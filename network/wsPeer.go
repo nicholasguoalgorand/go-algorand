@@ -40,7 +40,7 @@ import (
 	"github.com/algorand/go-algorand/util/metrics"
 )
 
-const maxMessageLength = 4 * 1024 * 1024 // Currently the biggest message is VB vote bundles. TODO: per message type size limit?
+const maxMessageLength = 20 * 1024 * 1024 // Currently the biggest message is VB vote bundles. TODO: per message type size limit?
 
 // This parameter controls how many messages from a single peer can be
 // queued up in the global wsNetwork.readBuffer at a time.  Making this
