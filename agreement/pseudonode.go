@@ -31,7 +31,7 @@ import (
 )
 
 // AssemblyTime is the max amount of time to spend on generating a proposal block.
-const AssemblyTime time.Duration = 250 * time.Millisecond
+const AssemblyTime time.Duration = 2500 * time.Millisecond
 
 // TODO put these in config
 const (
