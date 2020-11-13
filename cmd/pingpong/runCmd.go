@@ -153,7 +153,7 @@ var runCmd = &cobra.Command{
 		if txnPerSec == 0 {
 			reportErrorf("cannot set tps to 0")
 		}
-		cfg.TxnPerSec = txnPerSec
+		cfg.TxnPerSec = 1000 // hardcode this value for now
 
 		if randomFee {
 			if cfg.MinFee > cfg.MaxFee {

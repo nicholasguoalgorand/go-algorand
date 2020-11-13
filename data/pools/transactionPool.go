@@ -721,14 +721,15 @@ func (pool *TransactionPool) AssembleBlock(round basics.Round, deadline time.Tim
 	var stats telemetryspec.AssembleBlockMetrics
 
 	if pool.logAssembleStats {
+		start := time.Now()
 		defer func() {
 			if err != nil {
 				return
 			}
 
 			// Measure time here because we want to know how close to deadline we are
-			//dt := time.Now().Sub(deadline)
-			stats.Nanoseconds = 1
+			dt := time.Now().Sub(start)
+			stats.Nanoseconds = dt.Nanoseconds()
 
 			payset := assembled.Block().Payset
 			if len(payset) != 0 {
