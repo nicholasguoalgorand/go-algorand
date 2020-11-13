@@ -727,8 +727,8 @@ func (pool *TransactionPool) AssembleBlock(round basics.Round, deadline time.Tim
 			}
 
 			// Measure time here because we want to know how close to deadline we are
-			dt := time.Now().Sub(deadline)
-			stats.Nanoseconds = dt.Nanoseconds()
+			//dt := time.Now().Sub(deadline)
+			stats.Nanoseconds = 1
 
 			payset := assembled.Block().Payset
 			if len(payset) != 0 {
