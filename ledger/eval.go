@@ -964,10 +964,10 @@ func validateTransaction(txn transactions.SignedTxn, block bookkeeping.Block, pr
 	}
 
 	if txcache == nil || !txcache.Verified(txn, ctx.Params) {
-		err = verify.TxnPool(&txn, ctx, verificationPool)
-		if err != nil {
-			return fmt.Errorf("transaction %v: failed to verify: %v", txn.ID(), err)
-		}
+		//err = verify.TxnPool(&txn, ctx, verificationPool)
+		//if err != nil {
+		//	return fmt.Errorf("transaction %v: failed to verify: %v", txn.ID(), err)
+		//}
 	}
 	return nil
 }
