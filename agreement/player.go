@@ -578,9 +578,11 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			uv = ef.(committableEvent).Vote.u()
 		}
 		up := e.Input.UnauthenticatedProposal
-
-		a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
-		actions = append(actions, a)
+		
+		if e.t() == payloadPresent {
+			a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
+			actions = append(actions, a)
+		}
 
 		// If the payload is valid, check it against any received cert threshold.
 		// Of course, this should only trigger for payloadVerified case.
