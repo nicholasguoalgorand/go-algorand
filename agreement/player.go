@@ -17,6 +17,7 @@
 package agreement
 
 import (
+	"github.com/algorand/go-algorand/logging"
 	"time"
 
 	"github.com/algorand/go-algorand/config"
@@ -559,21 +560,32 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 
 				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: unauthenticatedVote{}})
 				actions = append(actions, a)
+				logging.Base().Infof("payloadpipelined")
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))
 			}
 		}
 
-		//var uv unauthenticatedVote
-		//switch ef.t() {
-		//case payloadPipelined, payloadAccepted:
-		//	uv = ef.(payloadProcessedEvent).Vote.u()
-		//case proposalCommittable:
-		//	uv = ef.(committableEvent).Vote.u()
-		//}
+		var uv unauthenticatedVote
+		switch ef.t() {
+		case payloadPipelined, payloadAccepted:
+			uv = ef.(payloadProcessedEvent).Vote.u()
+		case proposalCommittable:
+			uv = ef.(committableEvent).Vote.u()
+		}
 		//up := e.Input.UnauthenticatedProposal
-		//
-		//a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
-		//actions = append(actions, a)
+		logging.Base().Infof("hello %s %s", e.t(), ef.t())
+
+		up := e.Input.UnauthenticatedProposal
+
+		var a action
+
+		if e.TaskIndex == 1 {
+			a = relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
+		} else {
+			a = relayAction(e, protocol.AgreementVoteTag, uv)
+		}
+
+		actions = append(actions, a)
 
 		// If the payload is valid, check it against any received cert threshold.
 		// Of course, this should only trigger for payloadVerified case.
