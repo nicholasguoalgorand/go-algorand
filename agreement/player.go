@@ -578,6 +578,7 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 		var a action
 
 		if e.TaskIndex == 1 {
+			r.t.timeR().RecBlockAssembled()
 			a = relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 			actions = append(actions, a)
 		}
