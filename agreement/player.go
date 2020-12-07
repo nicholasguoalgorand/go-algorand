@@ -558,7 +558,7 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			if ep.Round == p.Round {
 				up := e.Input.UnauthenticatedProposal
 
-				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: unauthenticatedVote{}})
+				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: ef.(payloadProcessedEvent).Vote.u()})
 				actions = append(actions, a)
 				logging.Base().Infof("payloadpipelined")
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))
@@ -572,20 +572,15 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 		case proposalCommittable:
 			uv = ef.(committableEvent).Vote.u()
 		}
-		//up := e.Input.UnauthenticatedProposal
-		logging.Base().Infof("hello %s %s", e.t(), ef.t())
-
 		up := e.Input.UnauthenticatedProposal
+		logging.Base().Infof("hello %s %s", e.t(), ef.t())
 
 		var a action
 
 		if e.TaskIndex == 1 {
 			a = relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
-		} else {
-			a = relayAction(e, protocol.AgreementVoteTag, uv)
+			actions = append(actions, a)
 		}
-
-		actions = append(actions, a)
 
 		// If the payload is valid, check it against any received cert threshold.
 		// Of course, this should only trigger for payloadVerified case.
