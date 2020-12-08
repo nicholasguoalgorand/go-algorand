@@ -190,7 +190,6 @@ build-race: build
 	@mkdir -p $(GOPATH1)/bin-race
 	GOBIN=$(GOPATH1)/bin-race go install $(GOTRIMPATH) $(GOTAGS) -race -ldflags="$(GOLDFLAGS)" ./...
 	GOBIN=$(GOPATH1)/bin-race go install $(GOTRIMPATH) $(GOTAGS) -ldflags="$(GOLDFLAGS)" $(SOURCES_RACE)
-	go vet ./...
 
 NONGO_BIN_FILES=$(GOPATH1)/bin/find-nodes.sh $(GOPATH1)/bin/update.sh $(GOPATH1)/bin/COPYING $(GOPATH1)/bin/ddconfig.sh
 
@@ -305,6 +304,4 @@ install: build
 include ./scripts/release/mule/Makefile.mule
 
 archive:
-	CHANNEL=$(CHANNEL) \
-	aws s3 cp tmp/node_pkgs s3://algorand-internal/channel/${CHANNEL}/$(FULLBUILDNUMBER) --recursive --exclude "*" --include "*${CHANNEL}*$(FULLBUILDNUMBER)*"
-
+	aws s3 cp tmp/node_pkgs s3://algorand-internal/channel/$(CHANNEL)/$(FULLBUILDNUMBER) --recursive --exclude "*" --include "*$(FULLBUILDNUMBER)*"
