@@ -489,7 +489,6 @@ func (wn *WebsocketNetwork) Disconnect(node Peer) {
 
 // Disconnect from a peer, probably due to protocol errors.
 func (wn *WebsocketNetwork) disconnect(badnode Peer, reason disconnectReason) {
-	return
 	if badnode == nil {
 		return
 	}
