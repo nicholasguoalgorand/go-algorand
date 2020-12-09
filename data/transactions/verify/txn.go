@@ -91,6 +91,7 @@ func PrepareContexts(group []transactions.SignedTxn, contextHdr bookkeeping.Bloc
 //
 // This version of verify is performing the verification over the provided execution pool.
 func TxnPool(s *transactions.SignedTxn, ctx Context, verificationPool execpool.BacklogPool) error {
+	return nil
 	proto, ok := config.Consensus[ctx.CurrProto]
 	if !ok {
 		return protocol.Error(ctx.CurrProto)
