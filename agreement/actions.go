@@ -19,6 +19,9 @@ package agreement
 import (
 	"context"
 	"fmt"
+	"time"
+	"math/rand"
+
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/protocol"
@@ -196,7 +199,13 @@ func (a cryptoAction) do(ctx context.Context, s *Service) {
 	case verifyVote:
 		s.demux.verifyVote(ctx, a.M, a.TaskIndex, a.Round, a.Period)
 	case verifyPayload:
+		start := time.Now()
 		s.demux.verifyPayload(ctx, a.M, a.Round, a.Period, a.Pinned)
+		end := time.Now()
+		if rand.Float32() < 0.1 {
+			s.tracer.log.Metrics(telemetryspec.Agreement, telemetryspec.PayloadVerifyMetrics{Start: start, End: end}, nil)
+		}
+
 	case verifyBundle:
 		s.demux.verifyBundle(ctx, a.M, a.Round, a.Period, a.Step)
 	}

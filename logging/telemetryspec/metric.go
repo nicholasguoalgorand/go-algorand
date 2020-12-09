@@ -101,6 +101,19 @@ func (m ProcessBlockMetrics) Identifier() Metric {
 	return processBlockMetricsIdentifier
 }
 
+const payloadVerifyMetricsIdentifier Metric = "PayloadVerify"
+
+// PayloadVerifyMetrics is the set of metrics captured when we validate a block
+type PayloadVerifyMetrics struct {
+	Start time.Time `json:"start"`
+	End time.Time `json:"end"`
+}
+
+// Identifier implements the required MetricDetails interface, retrieving the Identifier for this set of metrics.
+func (m PayloadVerifyMetrics) Identifier() Metric {
+	return payloadVerifyMetricsIdentifier
+}
+
 //-------------------------------------------------------
 // RoundTiming
 
