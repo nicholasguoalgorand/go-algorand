@@ -17,7 +17,6 @@
 package agreement
 
 import (
-	"github.com/algorand/go-algorand/logging"
 	"time"
 
 	"github.com/algorand/go-algorand/config"
@@ -558,9 +557,8 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			if ep.Round == p.Round {
 				up := e.Input.UnauthenticatedProposal
 
-				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: ef.(payloadProcessedEvent).Vote.u()})
+				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: unauthenticatedVote{}})
 				actions = append(actions, a)
-				logging.Base().Infof("payloadpipelined")
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))
 			}
 		}
@@ -573,7 +571,6 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			uv = ef.(committableEvent).Vote.u()
 		}
 		up := e.Input.UnauthenticatedProposal
-		logging.Base().Infof("hello %s %s", e.t(), ef.t())
 
 		if e.TaskIndex == 1 {
 			r.t.timeR().RecBlockAssembled()

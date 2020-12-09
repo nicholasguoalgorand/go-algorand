@@ -19,8 +19,6 @@ package agreement
 import (
 	"context"
 	"fmt"
-	"github.com/algorand/go-algorand/logging"
-
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/protocol"
@@ -418,7 +416,6 @@ func broadcastAction(tag protocol.Tag, o interface{}) action {
 }
 
 func relayAction(e messageEvent, tag protocol.Tag, o interface{}) action {
-	logging.Base().Infof("relayaction")
 	a := networkAction{T: relay, h: e.Input.MessageHandle, Tag: tag}
 	// TODO would be good to have compiler check this (and related) type switch
 	// by specializing one method per type
@@ -438,7 +435,6 @@ func verifyVoteAction(e messageEvent, r round, p period, taskIndex int) action {
 }
 
 func verifyPayloadAction(e messageEvent, r round, p period, pinned bool) action {
-	logging.Base().Infof("verify payload action")
 	return cryptoAction{T: verifyPayload, M: e.Input, Round: r, Period: p, Pinned: pinned}
 }
 
