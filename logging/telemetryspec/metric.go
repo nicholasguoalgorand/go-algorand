@@ -105,8 +105,8 @@ const payloadVerifyMetricsIdentifier Metric = "PayloadVerify"
 
 // PayloadVerifyMetrics is the set of metrics captured when we validate a block
 type PayloadVerifyMetrics struct {
-	Start time.Time `json:"start"`
-	End time.Time `json:"end"`
+	Time int64 `json:"time"`
+	Txns int `json:"txns"`
 }
 
 // Identifier implements the required MetricDetails interface, retrieving the Identifier for this set of metrics.

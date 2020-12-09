@@ -425,6 +425,7 @@ func (wn *WebsocketNetwork) PublicAddress() string {
 // if wait is true then the call blocks until the packet has actually been sent to all neighbors.
 // TODO: add `priority` argument so that we don't have to guess it based on tag
 func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error {
+	logging.Base().Infof("broadcasthere")
 	request := broadcastRequest{tag: tag, data: data, enqueueTime: time.Now()}
 	if except != nil {
 		request.except = except.(*wsPeer)
@@ -470,6 +471,7 @@ func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, dat
 
 // Relay message
 func (wn *WebsocketNetwork) Relay(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error {
+	logging.Base().Infof("relayhere")
 	if wn.relayMessages {
 		return wn.Broadcast(ctx, tag, data, wait, except)
 	}
