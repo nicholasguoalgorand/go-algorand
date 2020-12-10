@@ -471,8 +471,9 @@ func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, dat
 
 // Relay message
 func (wn *WebsocketNetwork) Relay(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error {
-	logging.Base().Infof("relayhere")
+	logging.Base().Infof("relayhere, %v", tag)
 	if wn.relayMessages {
+		logging.Base().Infof("relay2")
 		return wn.Broadcast(ctx, tag, data, wait, except)
 	}
 	return nil

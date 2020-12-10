@@ -208,6 +208,7 @@ func (m *proposalManager) handleMessageEvent(r routerHandle, p player, e filtera
 		}
 
 		up := e.Input.UnauthenticatedProposal
+		logging.Base().Infof("record payloadverify")
 		r.t.timeR().RecPayloadValidation(up.OriginalPeriod, propose, up.value())
 
 		return r.dispatch(p, e.messageEvent, proposalMachineRound, p.Round, p.Period, 0)
