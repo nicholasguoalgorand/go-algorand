@@ -380,13 +380,13 @@ func (c *poolCryptoVerifier) verifyProposalPayload(request cryptoProposalRequest
 
 
 	end := time.Now()
+	metric := telemetryspec.PayloadVerifyMetrics{
+		Time: end.Sub(start).Nanoseconds(),
+		Txns: len(p.Block.Payset),
+		Round: int(p.Block.Round()),
+	}
+	logging.Base().Infof("payloadverify")
 	if rand.Float32() < 0.1 {
-		metric := telemetryspec.PayloadVerifyMetrics{
-			Time: end.Sub(start).Nanoseconds(),
-			Txns: len(p.Block.Payset),
-			Round: int(p.Block.Round()),
-		}
-
 		c.log.Metrics(telemetryspec.Agreement, metric, nil)
 	}
 
