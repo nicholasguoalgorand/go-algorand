@@ -556,7 +556,8 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			ep := ef.(payloadProcessedEvent)
 			if ep.Round == p.Round {
 				up := e.Input.UnauthenticatedProposal
-				uv := ef.(payloadProcessedEvent).Vote.u()
+				//uv := ef.(payloadProcessedEvent).Vote.u()
+				uv := unauthenticatedVote{}
 				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 				actions = append(actions, a)
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))

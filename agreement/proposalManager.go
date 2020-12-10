@@ -180,6 +180,7 @@ func (m *proposalManager) handleMessageEvent(r routerHandle, p player, e filtera
 			// we log timing info on payloadPresent because we delay verification
 			// (this is in contrast to logging timing on voteVerified...)
 			r.t.timeR().RecPayload(ep.Proposal.OriginalPeriod, propose, ep.Proposal)
+			logging.Base().Infof("payloadrec")
 			return ep
 		}
 
@@ -195,6 +196,7 @@ func (m *proposalManager) handleMessageEvent(r routerHandle, p player, e filtera
 		pipelinedPeriod = 0
 
 		r.t.timeRPlus1().RecPayload(ep.Proposal.OriginalPeriod, propose, ep.Proposal)
+		logging.Base().Infof("payloadrec")
 
 		return ep
 

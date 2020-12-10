@@ -16,6 +16,8 @@
 
 package agreement
 
+import "github.com/algorand/go-algorand/logging"
+
 // A stateMachineTag uniquely identifies the type of a state machine.
 //
 // Rounds, periods, and steps may be used to further identify different state machine instances of the same type.
@@ -145,6 +147,7 @@ func (router *rootRouter) submitTop(t *tracer, state player, e event) (player, [
 
 	router.update(state, 0, true)
 	handle := routerHandle{t: t, r: router, src: playerMachine}
+	logging.Base().Infof("event start, %v", e)
 	a := router.root.handle(handle, e)
 
 	t.aoutTop(demultiplexer, playerMachine, a, 0, 0, 0)
