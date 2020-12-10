@@ -384,6 +384,7 @@ func (c *poolCryptoVerifier) verifyProposalPayload(request cryptoProposalRequest
 		metric := telemetryspec.PayloadVerifyMetrics{
 			Time: end.Sub(start).Nanoseconds(),
 			Txns: len(p.Block.Payset),
+			Round: int(p.Block.Round()),
 		}
 
 		c.log.Metrics(telemetryspec.Agreement, metric, nil)

@@ -107,6 +107,7 @@ const payloadVerifyMetricsIdentifier Metric = "PayloadVerify"
 type PayloadVerifyMetrics struct {
 	Time int64 `json:"time"`
 	Txns int `json:"txns"`
+	Round int `json:"round"`
 }
 
 // Identifier implements the required MetricDetails interface, retrieving the Identifier for this set of metrics.

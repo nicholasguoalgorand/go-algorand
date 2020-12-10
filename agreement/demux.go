@@ -297,6 +297,26 @@ func (d *demux) next(s *Service, deadline time.Duration, fastDeadline time.Durat
 		d.monitor.inc(demuxCoserviceType)
 		d.monitor.dec(clockCoserviceType)
 
+	// authenticated
+	case r := <-d.crypto.VerifiedVotes():
+		e = messageEvent{T: voteVerified, Input: r.message, TaskIndex: r.index, Err: makeSerErr(r.err), Cancelled: r.cancelled}
+		d.UpdateEventsQueue(eventQueueDemux, 1)
+		d.UpdateEventsQueue(eventQueueCryptoVerifierVote, 0)
+		d.monitor.inc(demuxCoserviceType)
+		d.monitor.dec(cryptoVerifierCoserviceType)
+	case r := <-d.crypto.Verified(protocol.ProposalPayloadTag):
+		e = messageEvent{T: payloadVerified, Input: r.message, Err: r.Err, Cancelled: r.Cancelled}
+		d.UpdateEventsQueue(eventQueueDemux, 1)
+		d.UpdateEventsQueue(eventQueueCryptoVerifierProposal, 0)
+		d.monitor.inc(demuxCoserviceType)
+		d.monitor.dec(cryptoVerifierCoserviceType)
+	case r := <-d.crypto.Verified(protocol.VoteBundleTag):
+		e = messageEvent{T: bundleVerified, Input: r.message, Err: r.Err, Cancelled: r.Cancelled}
+		d.UpdateEventsQueue(eventQueueDemux, 1)
+		d.UpdateEventsQueue(eventQueueCryptoVerifierBundle, 0)
+		d.monitor.inc(demuxCoserviceType)
+		d.monitor.dec(cryptoVerifierCoserviceType)
+
 	// raw
 	case m, open := <-rawVotes:
 		if !open {
@@ -325,28 +345,8 @@ func (d *demux) next(s *Service, deadline time.Duration, fastDeadline time.Durat
 		d.UpdateEventsQueue(eventQueueTokenized[protocol.VoteBundleTag], 0)
 		d.monitor.inc(demuxCoserviceType)
 		d.monitor.dec(tokenizerCoserviceType)
-
-	// authenticated
-	case r := <-d.crypto.VerifiedVotes():
-		e = messageEvent{T: voteVerified, Input: r.message, TaskIndex: r.index, Err: makeSerErr(r.err), Cancelled: r.cancelled}
-		d.UpdateEventsQueue(eventQueueDemux, 1)
-		d.UpdateEventsQueue(eventQueueCryptoVerifierVote, 0)
-		d.monitor.inc(demuxCoserviceType)
-		d.monitor.dec(cryptoVerifierCoserviceType)
-	case r := <-d.crypto.Verified(protocol.ProposalPayloadTag):
-		e = messageEvent{T: payloadVerified, Input: r.message, Err: r.Err, Cancelled: r.Cancelled}
-		d.UpdateEventsQueue(eventQueueDemux, 1)
-		d.UpdateEventsQueue(eventQueueCryptoVerifierProposal, 0)
-		d.monitor.inc(demuxCoserviceType)
-		d.monitor.dec(cryptoVerifierCoserviceType)
-	case r := <-d.crypto.Verified(protocol.VoteBundleTag):
-		e = messageEvent{T: bundleVerified, Input: r.message, Err: r.Err, Cancelled: r.Cancelled}
-		d.UpdateEventsQueue(eventQueueDemux, 1)
-		d.UpdateEventsQueue(eventQueueCryptoVerifierBundle, 0)
-		d.monitor.inc(demuxCoserviceType)
-		d.monitor.dec(cryptoVerifierCoserviceType)
 	}
-
+	
 	return
 }
 
