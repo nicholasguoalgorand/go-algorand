@@ -145,6 +145,7 @@ func (router *rootRouter) submitTop(t *tracer, state player, e event) (player, [
 	t.traceInput(state.Round, state.Period, state, e) // cadaver
 	t.ainTop(demultiplexer, playerMachine, state, e, 0, 0, 0)
 
+	logging.Base().Infof("event almost start, %v", e)
 	router.update(state, 0, true)
 	handle := routerHandle{t: t, r: router, src: playerMachine}
 	logging.Base().Infof("event start, %v", e)
