@@ -347,8 +347,6 @@ func (d *demux) next(s *Service, deadline time.Duration, fastDeadline time.Durat
 		d.monitor.dec(cryptoVerifierCoserviceType)
 	}
 	
-	logging.Base().Infof("eventhere, %v", e)
-	
 	return
 }
 

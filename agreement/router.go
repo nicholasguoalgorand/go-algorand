@@ -142,17 +142,15 @@ func (router *rootRouter) update(state player, r round, gc bool) {
 // (i.e., to the playerMachine).
 func (router *rootRouter) submitTop(t *tracer, state player, e event) (player, []action) {
 	// TODO move cadaver calls to somewhere cleaner
-	//t.traceInput(state.Round, state.Period, state, e) // cadaver
+	t.traceInput(state.Round, state.Period, state, e) // cadaver
 	t.ainTop(demultiplexer, playerMachine, state, e, 0, 0, 0)
-
-	logging.Base().Infof("event almost start, %v", e)
 	router.update(state, 0, true)
 	handle := routerHandle{t: t, r: router, src: playerMachine}
 	logging.Base().Infof("event start, %v", e)
 	a := router.root.handle(handle, e)
 
 	t.aoutTop(demultiplexer, playerMachine, a, 0, 0, 0)
-	//t.traceOutput(state.Round, state.Period, state, a) // cadaver
+	t.traceOutput(state.Round, state.Period, state, a) // cadaver
 
 	p := router.root.underlying().(*player)
 	return *p, a
