@@ -628,8 +628,8 @@ func constructTxn(from, to string, fee, amt, aidx uint64, cinfo CreatablesInfo, 
 		_, _ = fmt.Fprintf(os.Stdout, "error constructing transaction %v\n", err)
 		return
 	}
-	// adjust transaction duration for 5 rounds. That would prevent it from getting stuck in the transaction pool for too long.
-	txn.LastValid = txn.FirstValid + 5
+	// adjust transaction duration for 3 rounds. That would prevent it from getting stuck in the transaction pool for too long.
+	txn.LastValid = txn.FirstValid + 3
 
 	// if cfg.MaxFee == 0, automatically adjust the fee amount to required min fee
 	if cfg.MaxFee == 0 {
