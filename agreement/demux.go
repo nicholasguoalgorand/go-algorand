@@ -346,7 +346,7 @@ func (d *demux) next(s *Service, deadline time.Duration, fastDeadline time.Durat
 		d.monitor.inc(demuxCoserviceType)
 		d.monitor.dec(cryptoVerifierCoserviceType)
 	}
-	
+
 	return
 }
 
