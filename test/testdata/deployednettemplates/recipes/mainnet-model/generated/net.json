@@ -523,7 +523,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -550,7 +550,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -577,7 +577,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -604,7 +604,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -631,7 +631,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -658,7 +658,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -685,7 +685,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -712,7 +712,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -739,7 +739,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -766,7 +766,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -793,7 +793,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -820,7 +820,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -847,7 +847,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -874,7 +874,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -901,7 +901,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -928,7 +928,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -955,7 +955,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -982,7 +982,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1009,7 +1009,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1036,7 +1036,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1063,7 +1063,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1090,7 +1090,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1117,7 +1117,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1144,7 +1144,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1171,7 +1171,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1198,7 +1198,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1225,7 +1225,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1252,7 +1252,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1279,7 +1279,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1306,7 +1306,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1333,7 +1333,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1360,7 +1360,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1387,7 +1387,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1414,7 +1414,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1441,7 +1441,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1468,7 +1468,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1495,7 +1495,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1522,7 +1522,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1549,7 +1549,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1576,7 +1576,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1603,7 +1603,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": true,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"EnableAgreementReporting\": true, \"EnableAgreementTimeMetrics\": true, \"EnableAssembleStats\": true, \"EnableProcessBlockStats\": true, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1630,7 +1630,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1657,7 +1657,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1684,7 +1684,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1711,7 +1711,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1738,7 +1738,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1765,7 +1765,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1792,7 +1792,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1819,7 +1819,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1846,7 +1846,7 @@
 					"MetricsURI": "{{MetricsURI}}",
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"PeerPingPeriodSeconds\": 30, \"BaseLoggerDebugLevel\": 4, \"EnableProfiler\": true, \"CadaverSizeTarget\": 0 }"
 				}
 			]
 		},
@@ -1862,11 +1862,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet149",
+							"Name": "Wallet129",
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet197",
+							"Name": "Wallet157",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet185",
 							"ParticipationOnly": false
 						}
 					],
@@ -1876,7 +1880,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -1892,11 +1896,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet150",
+							"Name": "Wallet130",
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet198",
+							"Name": "Wallet158",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet186",
 							"ParticipationOnly": false
 						}
 					],
@@ -1906,7 +1914,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -1922,11 +1930,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet151",
+							"Name": "Wallet131",
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet199",
+							"Name": "Wallet159",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet187",
 							"ParticipationOnly": false
 						}
 					],
@@ -1936,7 +1948,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -1952,11 +1964,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet152",
+							"Name": "Wallet132",
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet200",
+							"Name": "Wallet160",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet188",
 							"ParticipationOnly": false
 						}
 					],
@@ -1966,7 +1982,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -1982,7 +1998,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet153",
+							"Name": "Wallet133",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet161",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet189",
 							"ParticipationOnly": false
 						}
 					],
@@ -1992,7 +2016,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2008,7 +2032,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet154",
+							"Name": "Wallet134",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet162",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet190",
 							"ParticipationOnly": false
 						}
 					],
@@ -2018,7 +2050,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2034,7 +2066,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet155",
+							"Name": "Wallet135",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet163",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet191",
 							"ParticipationOnly": false
 						}
 					],
@@ -2044,7 +2084,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2060,7 +2100,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet156",
+							"Name": "Wallet136",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet164",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet192",
 							"ParticipationOnly": false
 						}
 					],
@@ -2070,7 +2118,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2086,7 +2134,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet157",
+							"Name": "Wallet137",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet165",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet193",
 							"ParticipationOnly": false
 						}
 					],
@@ -2096,7 +2152,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2112,7 +2168,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet158",
+							"Name": "Wallet138",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet166",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet194",
 							"ParticipationOnly": false
 						}
 					],
@@ -2122,7 +2186,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2138,7 +2202,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet159",
+							"Name": "Wallet139",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet167",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet195",
 							"ParticipationOnly": false
 						}
 					],
@@ -2148,7 +2220,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2164,7 +2236,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet160",
+							"Name": "Wallet140",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet168",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet196",
 							"ParticipationOnly": false
 						}
 					],
@@ -2174,7 +2254,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2190,7 +2270,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet161",
+							"Name": "Wallet141",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet169",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet197",
 							"ParticipationOnly": false
 						}
 					],
@@ -2200,7 +2288,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2216,7 +2304,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet162",
+							"Name": "Wallet142",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet170",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet198",
 							"ParticipationOnly": false
 						}
 					],
@@ -2226,7 +2322,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2242,7 +2338,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet163",
+							"Name": "Wallet143",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet171",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet199",
 							"ParticipationOnly": false
 						}
 					],
@@ -2252,7 +2356,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2268,7 +2372,15 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet164",
+							"Name": "Wallet144",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet172",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet200",
 							"ParticipationOnly": false
 						}
 					],
@@ -2278,7 +2390,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2294,7 +2406,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet165",
+							"Name": "Wallet145",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet173",
 							"ParticipationOnly": false
 						}
 					],
@@ -2304,7 +2420,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2320,7 +2436,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet166",
+							"Name": "Wallet146",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet174",
 							"ParticipationOnly": false
 						}
 					],
@@ -2330,7 +2450,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2346,7 +2466,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet167",
+							"Name": "Wallet147",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet175",
 							"ParticipationOnly": false
 						}
 					],
@@ -2356,7 +2480,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2372,7 +2496,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet168",
+							"Name": "Wallet148",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet176",
 							"ParticipationOnly": false
 						}
 					],
@@ -2382,7 +2510,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2398,7 +2526,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet169",
+							"Name": "Wallet149",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet177",
 							"ParticipationOnly": false
 						}
 					],
@@ -2408,7 +2540,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2424,7 +2556,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet170",
+							"Name": "Wallet150",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet178",
 							"ParticipationOnly": false
 						}
 					],
@@ -2434,7 +2570,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2450,7 +2586,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet171",
+							"Name": "Wallet151",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet179",
 							"ParticipationOnly": false
 						}
 					],
@@ -2460,7 +2600,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2476,7 +2616,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet172",
+							"Name": "Wallet152",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet180",
 							"ParticipationOnly": false
 						}
 					],
@@ -2486,7 +2630,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2502,7 +2646,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet173",
+							"Name": "Wallet153",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet181",
 							"ParticipationOnly": false
 						}
 					],
@@ -2512,7 +2660,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2528,7 +2676,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet174",
+							"Name": "Wallet154",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet182",
 							"ParticipationOnly": false
 						}
 					],
@@ -2538,7 +2690,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2554,7 +2706,11 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet175",
+							"Name": "Wallet155",
+							"ParticipationOnly": false
+						},
+						{
+							"Name": "Wallet183",
 							"ParticipationOnly": false
 						}
 					],
@@ -2564,7 +2720,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		},
@@ -2580,211 +2736,7 @@
 							"ParticipationOnly": false
 						},
 						{
-							"Name": "Wallet176",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN29",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode29",
-					"Wallets": [
-						{
-							"Name": "Wallet129",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet177",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN30",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode30",
-					"Wallets": [
-						{
-							"Name": "Wallet130",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet178",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN31",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode31",
-					"Wallets": [
-						{
-							"Name": "Wallet131",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet179",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN32",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode32",
-					"Wallets": [
-						{
-							"Name": "Wallet132",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet180",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN33",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode33",
-					"Wallets": [
-						{
-							"Name": "Wallet133",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet181",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN34",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode34",
-					"Wallets": [
-						{
-							"Name": "Wallet134",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet182",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN35",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode35",
-					"Wallets": [
-						{
-							"Name": "Wallet135",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet183",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN36",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode36",
-					"Wallets": [
-						{
-							"Name": "Wallet136",
+							"Name": "Wallet156",
 							"ParticipationOnly": false
 						},
 						{
@@ -2798,319 +2750,7 @@
 					"EnableMetrics": false,
 					"EnableService": false,
 					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN37",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode37",
-					"Wallets": [
-						{
-							"Name": "Wallet137",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet185",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN38",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode38",
-					"Wallets": [
-						{
-							"Name": "Wallet138",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet186",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN39",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode39",
-					"Wallets": [
-						{
-							"Name": "Wallet139",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet187",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN40",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode40",
-					"Wallets": [
-						{
-							"Name": "Wallet140",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet188",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN41",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode41",
-					"Wallets": [
-						{
-							"Name": "Wallet141",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet189",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN42",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode42",
-					"Wallets": [
-						{
-							"Name": "Wallet142",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet190",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN43",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode43",
-					"Wallets": [
-						{
-							"Name": "Wallet143",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet191",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN44",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode44",
-					"Wallets": [
-						{
-							"Name": "Wallet144",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet192",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN45",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode45",
-					"Wallets": [
-						{
-							"Name": "Wallet145",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet193",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN46",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode46",
-					"Wallets": [
-						{
-							"Name": "Wallet146",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet194",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN47",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode47",
-					"Wallets": [
-						{
-							"Name": "Wallet147",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet195",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
-				}
-			]
-		},
-		{
-			"Name": "NPN48",
-			"Group": "",
-			"Nodes": [
-				{
-					"Name": "nonParticipatingNode48",
-					"Wallets": [
-						{
-							"Name": "Wallet148",
-							"ParticipationOnly": false
-						},
-						{
-							"Name": "Wallet196",
-							"ParticipationOnly": false
-						}
-					],
-					"APIEndpoint": "{{APIEndpoint}}",
-					"APIToken": "{{APIToken}}",
-					"EnableTelemetry": false,
-					"EnableMetrics": false,
-					"EnableService": false,
-					"EnableBlockStats": false,
-					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4  }"
+					"ConfigJSONOverride": "{ \"TxPoolExponentialIncreaseFactor\": 1, \"DNSBootstrapID\": \"<network>.algodev.network\", \"DeadlockDetection\": -1, \"BaseLoggerDebugLevel\": 4, \"CadaverSizeTarget\": 0  }"
 				}
 			]
 		}
