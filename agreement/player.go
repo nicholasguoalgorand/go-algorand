@@ -555,11 +555,12 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 		case payloadPipelined:
 			ep := ef.(payloadProcessedEvent)
 			if ep.Round == p.Round {
-				up := e.Input.UnauthenticatedProposal
-				//uv := ef.(payloadProcessedEvent).Vote.u()
-				uv := unauthenticatedVote{}
-				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
-				actions = append(actions, a)
+				//up := e.Input.UnauthenticatedProposal
+				////uv := ef.(payloadProcessedEvent).Vote.u()
+				//uv := unauthenticatedVote{}
+				//logging.Base().Infof("ask relay")
+				//a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
+				//actions = append(actions, a)
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))
 			}
 		}
@@ -573,8 +574,8 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 		}
 		up := e.Input.UnauthenticatedProposal
 
-		if e.TaskIndex == 1 {
-			r.t.timeR().RecBlockAssembled()
+		if true {
+			//r.t.timeR().RecBlockAssembled()
 			a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 			actions = append(actions, a)
 		}

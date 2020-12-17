@@ -19,6 +19,7 @@ package agreement
 import (
 	"context"
 	"fmt"
+	"github.com/algorand/go-algorand/logging"
 
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
@@ -123,6 +124,9 @@ func (a networkAction) String() string {
 func (a networkAction) do(ctx context.Context, s *Service) {
 	if a.T == broadcastVotes {
 		tag := protocol.AgreementVoteTag
+		if (tag == protocol.ProposalPayloadTag) {
+			logging.Base().Infof("do relay")
+		}
 		for i, uv := range a.UnauthenticatedVotes {
 			data := protocol.Encode(&uv)
 			sendErr := s.Network.Broadcast(tag, data)
