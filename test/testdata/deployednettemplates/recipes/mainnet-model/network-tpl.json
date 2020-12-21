@@ -17,7 +17,7 @@
     "nonParticipatingNodes": {
       "config": "./configs/nonPartNode.json",
       "type": "c5.xlarge",
-      "count": 20
+      "count": 50
     }
   },
   "groups": [
