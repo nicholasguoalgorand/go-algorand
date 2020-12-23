@@ -17,7 +17,6 @@
 package agreement
 
 import (
-	"github.com/algorand/go-algorand/logging"
 	"time"
 
 	"github.com/algorand/go-algorand/config"
@@ -559,7 +558,6 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 				up := e.Input.UnauthenticatedProposal
 				//uv := ef.(payloadProcessedEvent).Vote.u()
 				uv := unauthenticatedVote{}
-				logging.Base().Infof("ask relay")
 				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 				actions = append(actions, a)
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))

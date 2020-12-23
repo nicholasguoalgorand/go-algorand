@@ -222,7 +222,6 @@ func (s *Service) mainLoop(input <-chan externalEvent, output chan<- []action, r
 			break
 		}
 
-		logging.Base().Infof("event received")
 		status, a = router.submitTop(s.tracer, status, e)
 
 		if persistent(a) {
