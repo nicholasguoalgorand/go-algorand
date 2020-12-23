@@ -575,7 +575,8 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 		}
 		up := e.Input.UnauthenticatedProposal
 
-		if e.TaskIndex == 1 {
+		// relay as the proposer
+		if e.Input.MessageHandle == nil {
 			r.t.timeR().RecBlockAssembled()
 			a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 			actions = append(actions, a)
