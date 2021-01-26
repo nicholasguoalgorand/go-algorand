@@ -1,4 +1,4 @@
-// Copyright (C) 2019-2020 Algorand, Inc.
+// Copyright (C) 2019-2021 Algorand, Inc.
 // This file is part of go-algorand
 //
 // go-algorand is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@ import (
 	"github.com/algorand/go-algorand/logging"
 	"github.com/algorand/go-algorand/network"
 	"github.com/algorand/go-algorand/rpcs"
+	"github.com/algorand/go-algorand/util"
 )
 
 var errNoLedgerForRound = errors.New("No ledger available for given round")
@@ -74,7 +75,7 @@ func makeLedgerFetcher(net network.GossipNode, accessor ledger.CatchpointCatchup
 
 func (lf *ledgerFetcher) downloadLedger(ctx context.Context, round basics.Round) error {
 	if len(lf.peers) == 0 {
-		lf.peers = lf.net.GetPeers(network.PeersPhonebook)
+		lf.peers = lf.net.GetPeers(network.PeersPhonebookRelays)
 		if len(lf.peers) == 0 {
 			return errNoPeersAvailable
 		}
@@ -93,7 +94,7 @@ func (lf *ledgerFetcher) getPeerLedger(ctx context.Context, peer network.HTTPPee
 		return err
 	}
 
-	parsedURL.Path = peer.PrepareURL(path.Join(parsedURL.Path, "/v1/{genesisID}/ledger/"+strconv.FormatUint(uint64(round), 36)))
+	parsedURL.Path = lf.net.SubstituteGenesisID(path.Join(parsedURL.Path, "/v1/{genesisID}/ledger/"+strconv.FormatUint(uint64(round), 36)))
 	ledgerURL := parsedURL.String()
 	lf.log.Debugf("ledger GET %#v peer %#v %T", ledgerURL, peer, peer)
 	request, err := http.NewRequest(http.MethodGet, ledgerURL, nil)
@@ -142,7 +143,7 @@ func (lf *ledgerFetcher) getPeerLedger(ctx context.Context, peer network.HTTPPee
 		maxCatchpointFileChunkDownloadDuration += maxCatchpointFileChunkSize * time.Second / defaultMinCatchpointFileDownloadBytesPerSecond
 	}
 
-	watchdogReader := makeWatchdogStreamReader(response.Body, catchpointFileStreamReadSize, 2*maxCatchpointFileChunkSize, maxCatchpointFileChunkDownloadDuration)
+	watchdogReader := util.MakeWatchdogStreamReader(response.Body, catchpointFileStreamReadSize, 2*maxCatchpointFileChunkSize, maxCatchpointFileChunkDownloadDuration)
 	defer watchdogReader.Close()
 	tarReader := tar.NewReader(watchdogReader)
 	var downloadProgress ledger.CatchpointCatchupAccessorProgress

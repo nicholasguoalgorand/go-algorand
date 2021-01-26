@@ -1,4 +1,4 @@
-// Copyright (C) 2019-2020 Algorand, Inc.
+// Copyright (C) 2019-2021 Algorand, Inc.
 // This file is part of go-algorand
 //
 // go-algorand is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@
 package agreement
 
 import (
-	"github.com/algorand/go-algorand/logging"
 	"time"
 
 	"github.com/algorand/go-algorand/config"
@@ -557,26 +556,25 @@ func (p *player) handleMessageEvent(r routerHandle, e messageEvent) (actions []a
 			ep := ef.(payloadProcessedEvent)
 			if ep.Round == p.Round {
 				up := e.Input.UnauthenticatedProposal
-				//uv := ef.(payloadProcessedEvent).Vote.u()
-				uv := unauthenticatedVote{}
-				logging.Base().Infof("ask relay")
+				uv := ef.(payloadProcessedEvent).Vote.u()
+
 				a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 				actions = append(actions, a)
 				return append(actions, verifyPayloadAction(e, ep.Round, ep.Period, ep.Pinned))
 			}
 		}
 
-		var uv unauthenticatedVote
-		switch ef.t() {
-		case payloadPipelined, payloadAccepted:
-			uv = ef.(payloadProcessedEvent).Vote.u()
-		case proposalCommittable:
-			uv = ef.(committableEvent).Vote.u()
-		}
-		up := e.Input.UnauthenticatedProposal
-
+		// relay as the proposer
 		if e.Input.MessageHandle == nil {
-			r.t.timeR().RecBlockAssembled()
+			var uv unauthenticatedVote
+			switch ef.t() {
+			case payloadPipelined, payloadAccepted:
+				uv = ef.(payloadProcessedEvent).Vote.u()
+			case proposalCommittable:
+				uv = ef.(committableEvent).Vote.u()
+			}
+			up := e.Input.UnauthenticatedProposal
+
 			a := relayAction(e, protocol.ProposalPayloadTag, compoundMessage{Proposal: up, Vote: uv})
 			actions = append(actions, a)
 		}

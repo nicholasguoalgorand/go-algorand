@@ -1,4 +1,4 @@
-// Copyright (C) 2019-2020 Algorand, Inc.
+// Copyright (C) 2019-2021 Algorand, Inc.
 // This file is part of go-algorand
 //
 // go-algorand is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ import (
 	"github.com/algorand/go-algorand/crypto"
 	"github.com/algorand/go-algorand/data/basics"
 	"github.com/algorand/go-algorand/data/bookkeeping"
-	"github.com/algorand/go-algorand/ledger"
+	"github.com/algorand/go-algorand/ledger/ledgercore"
 	"github.com/algorand/go-algorand/logging"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/network"
@@ -280,7 +280,7 @@ func (s *Service) fetchAndWrite(fetcher Fetcher, r basics.Round, prevFetchComple
 				err = s.ledger.AddBlock(*block, *cert)
 				if err != nil {
 					switch err.(type) {
-					case ledger.BlockInLedgerError:
+					case ledgercore.BlockInLedgerError:
 						s.log.Infof("fetchAndWrite(%d): block already in ledger", r)
 						return true
 					case protocol.Error:
@@ -445,7 +445,10 @@ func (s *Service) periodicSync() {
 	case <-s.ctx.Done():
 		return
 	}
-	s.sync()
+	// if the catchup is disabled in the config file, just skip it.
+	if s.parallelBlocks != 0 {
+		s.sync()
+	}
 	stuckInARow := 0
 	sleepDuration := s.deadlineTimeout
 	for {
@@ -463,6 +466,10 @@ func (s *Service) periodicSync() {
 		case <-time.After(sleepDuration):
 			if sleepDuration < s.deadlineTimeout {
 				sleepDuration = s.deadlineTimeout
+				continue
+			}
+			// if the catchup is disabled in the config file, just skip it.
+			if s.parallelBlocks == 0 {
 				continue
 			}
 			// check to see if we're currently writing a catchpoint file. If so, wait longer before attempting again.
