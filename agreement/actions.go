@@ -19,7 +19,6 @@ package agreement
 import (
 	"context"
 	"fmt"
-	"github.com/algorand/go-algorand/logging"
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/protocol"
@@ -149,7 +148,6 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 	case protocol.VoteBundleTag:
 		data = protocol.Encode(&a.UnauthenticatedBundle)
 	case protocol.ProposalPayloadTag:
-		logging.Base().Infof("do relay")
 		msg := a.CompoundMessage
 		payload := transmittedPayload{
 			unauthenticatedProposal: msg.Proposal,

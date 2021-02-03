@@ -18,7 +18,6 @@ package pingpong
 
 import (
 	"fmt"
-	"github.com/algorand/go-algorand/logging"
 	"math"
 	"math/rand"
 	"os"
@@ -120,7 +119,6 @@ func ensureAccounts(ac libgoal.Client, initCfg PpConfig) (accounts map[string]ui
 func throttleTransactionRate(startTime time.Time, cfg PpConfig, totalSent uint64) {
 	localTimeDelta := time.Now().Sub(startTime)
 	currentTps := float64(totalSent) / localTimeDelta.Seconds()
-	logging.Base().Infof("txnpersec %d %d", cfg.TxnPerSec, currentTps)
 	if currentTps > float64(cfg.TxnPerSec) {
 		sleepSec := float64(totalSent)/float64(cfg.TxnPerSec) - localTimeDelta.Seconds()
 		sleepTime := time.Duration(int64(math.Round(sleepSec*1000))) * time.Millisecond
