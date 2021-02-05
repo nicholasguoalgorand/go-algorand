@@ -35,7 +35,7 @@ import (
 )
 
 // set max fetcher size to 5MB, this is enough to fit the block and certificate
-const fetcherMaxBlockBytes = 5 << 20
+const fetcherMaxBlockBytes = 20 << 20
 
 var errNoBlockForRound = errors.New("No block available for given round")
 
