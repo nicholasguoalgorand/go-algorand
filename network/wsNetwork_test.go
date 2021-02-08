@@ -621,8 +621,8 @@ func TestSlowOutboundPeer(t *testing.T) {
 	for i := range destPeers {
 		destPeers[i].closing = make(chan struct{})
 		destPeers[i].net = node
-		destPeers[i].sendBufferHighPrio = make(chan sendMessage, sendBufferLength)
-		destPeers[i].sendBufferBulk = make(chan sendMessage, sendBufferLength)
+		destPeers[i].sendBufferHighPrio = make(chan []sendMessage, sendBufferLength)
+		destPeers[i].sendBufferBulk = make(chan []sendMessage, sendBufferLength)
 		destPeers[i].conn = &nopConnSingleton
 		destPeers[i].rootURL = fmt.Sprintf("fake %d", i)
 		node.addPeer(&destPeers[i])
@@ -759,7 +759,7 @@ func TestDupFilter(t *testing.T) {
 	rand.Read(msg)
 	t.Log("A send, C non-dup-send")
 	netA.Broadcast(context.Background(), debugTag2, msg, true, nil)
-	// B should broadcast its non-desire to recieve the message again
+	// B should broadcast its non-desire to receive the message again
 	time.Sleep(500 * time.Millisecond)
 
 	// C should now not send these
@@ -774,6 +774,7 @@ func TestDupFilter(t *testing.T) {
 	assert.Equal(t, 1, counter2.count)
 
 	debugMetrics(t)
+
 }
 
 func TestGetPeers(t *testing.T) {
@@ -1143,10 +1144,14 @@ func TestWebsocketNetwork_checkServerResponseVariables(t *testing.T) {
 }
 
 func (wn *WebsocketNetwork) broadcastWithTimestamp(tag protocol.Tag, data []byte, when time.Time) error {
-	request := broadcastRequest{tag: tag, data: data, enqueueTime: when}
+	msgArr := make([][]byte, 1, 1)
+	msgArr[0] = data
+	tagArr := make([]protocol.Tag, 1, 1)
+	tagArr[0] = tag
+	request := broadcastRequest{tags: tagArr, data: msgArr, enqueueTime: when}
 
 	broadcastQueue := wn.broadcastQueueBulk
-	if highPriorityTag(tag) {
+	if highPriorityTag(tagArr) {
 		broadcastQueue = wn.broadcastQueueHighPrio
 	}
 	// no wait

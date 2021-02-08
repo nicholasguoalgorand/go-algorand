@@ -152,7 +152,9 @@ const (
 type GossipNode interface {
 	Address() (string, bool)
 	Broadcast(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error
+	BroadcastArray(ctx context.Context, tag []protocol.Tag, data [][]byte, wait bool, except Peer) error
 	Relay(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error
+	RelayArray(ctx context.Context, tag []protocol.Tag, data [][]byte, wait bool, except Peer) error
 	Disconnect(badnode Peer)
 	DisconnectPeers()
 	Ready() chan struct{}
@@ -231,8 +233,13 @@ type IncomingMessage struct {
 // Tag is a short string (2 bytes) marking a type of message
 type Tag = protocol.Tag
 
-func highPriorityTag(tag protocol.Tag) bool {
-	return tag == protocol.AgreementVoteTag || tag == protocol.ProposalPayloadTag || tag == protocol.ProposalTransactionTag
+func highPriorityTag(tags []protocol.Tag) bool {
+	for _, tag := range tags {
+		if tag == protocol.AgreementVoteTag || tag == protocol.ProposalPayloadTag {
+			return true
+		}
+	}
+	return false
 }
 
 // OutgoingMessage represents a message we want to send.
@@ -397,11 +404,19 @@ type WebsocketNetwork struct {
 }
 
 type broadcastRequest struct {
-	tag         Tag
-	data        []byte
+	tags        []Tag
+	data        [][]byte
 	except      *wsPeer
 	done        chan struct{}
 	enqueueTime time.Time
+}
+
+func (r broadcastRequest) ToBeHashed() (protocol.HashID, []byte) {
+	h := make([]byte, 0)
+	for _, d := range r.data {
+		h = append(h, d...)
+	}
+	return protocol.Info, h
 }
 
 // Address returns a string and whether that is a 'final' address or guessed.
@@ -433,15 +448,26 @@ func (wn *WebsocketNetwork) PublicAddress() string {
 // Broadcast sends a message.
 // If except is not nil then we will not send it to that neighboring Peer.
 // if wait is true then the call blocks until the packet has actually been sent to all neighbors.
-// TODO: add `priority` argument so that we don't have to guess it based on tag
 func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error {
-	request := broadcastRequest{tag: tag, data: data, enqueueTime: time.Now()}
+	dataArray := make([][]byte, 1, 1)
+	dataArray[0] = data
+	tagArray := make([]protocol.Tag, 1, 1)
+	tagArray[0] = tag
+	return wn.BroadcastArray(ctx, tagArray, dataArray, wait, except)
+}
+
+// BroadcastArray sends an array of messages.
+// If except is not nil then we will not send it to that neighboring Peer.
+// if wait is true then the call blocks until the packet has actually been sent to all neighbors.
+// TODO: add `priority` argument so that we don't have to guess it based on tag
+func (wn *WebsocketNetwork) BroadcastArray(ctx context.Context, tags []protocol.Tag, data [][]byte, wait bool, except Peer) error {
+	request := broadcastRequest{tags: tags, data: data, enqueueTime: time.Now()}
 	if except != nil {
 		request.except = except.(*wsPeer)
 	}
 
 	broadcastQueue := wn.broadcastQueueBulk
-	if highPriorityTag(tag) {
+	if highPriorityTag(tags) {
 		broadcastQueue = wn.broadcastQueueHighPrio
 	}
 	if wait {
@@ -482,6 +508,14 @@ func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, dat
 func (wn *WebsocketNetwork) Relay(ctx context.Context, tag protocol.Tag, data []byte, wait bool, except Peer) error {
 	if wn.relayMessages {
 		return wn.Broadcast(ctx, tag, data, wait, except)
+	}
+	return nil
+}
+
+// RelayArray relays array of messages
+func (wn *WebsocketNetwork) RelayArray(ctx context.Context, tags []protocol.Tag, data [][]byte, wait bool, except Peer) error {
+	if wn.relayMessages {
+		return wn.BroadcastArray(ctx, tags, data, wait, except)
 	}
 	return nil
 }
@@ -1181,7 +1215,7 @@ func (wn *WebsocketNetwork) broadcastThread() {
 		select {
 		case request := <-wn.broadcastQueueHighPrio:
 			wn.innerBroadcast(request, true, &peers)
-			logging.Base().Infof("broadcasting: %v, %v", 1, request.tag)
+			logging.Base().Infof("broadcasting: %v, %v", 1, request.tags)
 			continue
 		default:
 		}
@@ -1189,13 +1223,13 @@ func (wn *WebsocketNetwork) broadcastThread() {
 		// if nothing high prio, broadcast anything
 		select {
 		case request := <-wn.broadcastQueueHighPrio:
-			logging.Base().Infof("broadcasting: %v, %v", 2, request.tag)
+			logging.Base().Infof("broadcasting: %v, %v", 2, request.tags)
 			wn.innerBroadcast(request, true, &peers)
 		case <-slowWritingPeerCheckTicker.C:
 			wn.checkSlowWritingPeers()
 			continue
 		case request := <-wn.broadcastQueueBulk:
-			logging.Base().Infof("broadcasting: %v, %v", 3, request.tag)
+			logging.Base().Infof("broadcasting: %v, %v", 3, request.tags)
 			wn.innerBroadcast(request, false, &peers)
 		case <-wn.ctx.Done():
 			return
@@ -1217,7 +1251,6 @@ func (wn *WebsocketNetwork) peerSnapshot(dest []*wsPeer) []*wsPeer {
 
 // prio is set if the broadcast is a high-priority broadcast.
 func (wn *WebsocketNetwork) innerBroadcast(request broadcastRequest, prio bool, ppeers *[]*wsPeer) {
-	logging.Base().Infof("broadcasting: %v, %v", crypto.Hash(request.data), request.tag)
 	if request.done != nil {
 		defer close(request.done)
 	}
@@ -1230,14 +1263,19 @@ func (wn *WebsocketNetwork) innerBroadcast(request broadcastRequest, prio bool, 
 	}
 
 	start := time.Now()
-	tbytes := []byte(request.tag)
-	mbytes := make([]byte, len(tbytes)+len(request.data))
-	copy(mbytes, tbytes)
-	copy(mbytes[len(tbytes):], request.data)
 
-	var digest crypto.Digest
-	if request.tag != protocol.MsgDigestSkipTag && len(request.data) >= messageFilterSize {
-		digest = crypto.Hash(mbytes)
+	digests := make([]crypto.Digest, len(request.data), len(request.data))
+	data := make([][]byte, len(request.data), len(request.data))
+	for i, d := range request.data {
+		tbytes := []byte(request.tags[i])
+		mbytes := make([]byte, len(tbytes)+len(d))
+		copy(mbytes, tbytes)
+		copy(mbytes[len(tbytes):], d)
+		data[i] = mbytes
+		// TODO(yg): message filter size will not cache txns
+		if request.tags[i] != protocol.MsgDigestSkipTag && len(d) >= messageFilterSize {
+			digests[i] = crypto.Hash(mbytes)
+		}
 	}
 
 	*ppeers = wn.peerSnapshot(*ppeers)
@@ -1253,7 +1291,7 @@ func (wn *WebsocketNetwork) innerBroadcast(request broadcastRequest, prio bool, 
 			peers[pi] = nil
 			continue
 		}
-		ok := peer.writeNonBlock(mbytes, prio, digest, request.enqueueTime)
+		ok := peer.writeNonBlockMsgs(data, prio, digests, request.enqueueTime)
 		if ok {
 			peers[pi] = nil
 			sentMessageCount++
