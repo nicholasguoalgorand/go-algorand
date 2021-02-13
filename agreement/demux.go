@@ -19,6 +19,8 @@ package agreement
 import (
 	"context"
 	"fmt"
+	"github.com/algorand/go-algorand/crypto"
+	"github.com/algorand/go-algorand/data/transactions"
 	"time"
 
 	"github.com/algorand/go-algorand/config"
@@ -105,6 +107,31 @@ func (d *demux) UpdateEventsQueue(queueName string, queueLength int) {
 	d.processingMonitor.UpdateEventsQueue(queueName, queueLength)
 }
 
+func ReconstructProposal(net Network, payset transactions.Payset, h MessageHandle) error {
+	logging.Base().Infof("len %v", len(payset))
+
+	keys := make([]crypto.Digest, len(payset), len(payset))
+	for i, stib := range payset {
+		keys[i] = stib.Digest
+	}
+	stxnsData := net.LoadKV(h, keys)
+
+	for i, stxnData := range stxnsData {
+		var stxn transactions.SignedTxn
+		dec := protocol.NewDecoderBytes(stxnData)
+		err := dec.Decode(&stxn)
+		payset[i].SignedTxn = stxn
+		if err != nil {
+			logging.Base().Warnf("Received a non-decodable txn: %v", err)
+			//net.Disconnect(raw.MessageHandle)
+			return err
+		}
+	}
+
+	logging.Base().Infof("done %v", len(payset))
+	return nil
+}
+
 // tokenizeMessages tokenizes a raw message stream
 func (d *demux) tokenizeMessages(ctx context.Context, net Network, tag protocol.Tag, tokenize streamTokenizer) <-chan message {
 	networkMessages := net.Messages(tag)
@@ -137,23 +164,7 @@ func (d *demux) tokenizeMessages(ctx context.Context, net Network, tag protocol.
 					msg = message{MessageHandle: raw.MessageHandle, Tag: tag, UnauthenticatedBundle: o.(unauthenticatedBundle)}
 				case protocol.ProposalPayloadTag:
 					msg = message{MessageHandle: raw.MessageHandle, Tag: tag, CompoundMessage: o.(compoundMessage)}
-					//var err error
-					//logging.Base().Infof("len %v", len(msg.CompoundMessage.Proposal.Payset))
-					//for i, stib := range msg.CompoundMessage.Proposal.Payset {
-					//	var stxnBytes []byte
-					//	stxnData := net.LoadKV(msg.MessageHandle, stib.Digest)
-					//	stxnBytes = stxnData.([]byte)
-					//	var stxn transactions.SignedTxn
-					//	dec := protocol.NewDecoderBytes(stxnBytes)
-					//	err = dec.Decode(&stxn)
-					//	msg.CompoundMessage.Proposal.Payset[i].SignedTxn = stxn
-					//	if err != nil {
-					//		logging.Base().Warnf("Received a non-decodable txn: %v", err)
-					//		//net.Disconnect(raw.MessageHandle)
-					//		break
-					//	}
-					//}
-					if err != nil {
+					if err := ReconstructProposal(net, msg.CompoundMessage.Proposal.Payset, msg.MessageHandle); err != nil {
 						continue
 					}
 				default:

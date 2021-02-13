@@ -18,6 +18,7 @@ package network
 
 import (
 	"container/heap"
+	"container/list"
 	"context"
 	"encoding/base64"
 	"errors"
@@ -204,11 +205,8 @@ type GossipNode interface {
 	// SubstituteGenesisID substitutes the "{genesisID}" with their network-specific genesisID.
 	SubstituteGenesisID(rawURL string) string
 
-	// StoreKV stores an entry in the corresponding peer's key-value store
-	StoreKV(node Peer, key interface{}, value interface{})
-
 	// LoadKV retrieves an entry from the corresponding peer's key-value store
-	LoadKV(node Peer, key interface{}) interface{}
+	LoadKV(node Peer, key []crypto.Digest) [][]byte
 }
 
 // IncomingMessage represents a message arriving from some peer in our p2p network
@@ -1342,7 +1340,7 @@ func (wn *WebsocketNetwork) peerSnapshot(dest []*wsPeer) ([]*wsPeer, int32) {
 
 // prio is set if the broadcast is a high-priority broadcast.
 func (wn *WebsocketNetwork) innerBroadcast(request broadcastRequest, prio bool, peers []*wsPeer) {
-	logging.Base().Infof("broadcasting: %v, %v", len(request.data), request.tags)
+	//logging.Base().Infof("broadcasting: %v, %v", len(request.data), request.tags)
 	if request.done != nil {
 		defer close(request.done)
 	}
@@ -2272,14 +2270,20 @@ func (wn *WebsocketNetwork) SubstituteGenesisID(rawURL string) string {
 }
 
 // StoreKV stores an entry in the corresponding peer's key-value store
-func (wn *WebsocketNetwork) StoreKV(node Peer, key interface{}, value interface{}) {
-	// TODO: add cache size limit
+func (wn *WebsocketNetwork) StoreKV(node Peer, key crypto.Digest, value []byte) {
 	peer := node.(*wsPeer)
 	peer.StoreKV(key, value)
 }
 
 // LoadKV retrieves an entry from the corresponding peer's key-value store
-func (wn *WebsocketNetwork) LoadKV(node Peer, key interface{}) interface{} {
+func (wn *WebsocketNetwork) LoadKV(node Peer, keys []crypto.Digest) [][]byte {
 	peer := node.(*wsPeer)
-	return peer.LoadKV(key)
+	return peer.LoadKV(keys)
+}
+
+func (wn *WebsocketNetwork) TestPeer() wsPeer {
+	var wp wsPeer
+	wp.kvStore = make(map[crypto.Digest][]byte)
+	wp.keysList = list.New()
+	return wp
 }

@@ -266,15 +266,14 @@ func (block *Block) Seed() committee.Seed {
 
 // Compressed returns the Block without ApplyData
 func (block *Block) Compressed() Block {
-	c := *block
-	c.Payset = nil
-	for _, stb := range block.Payset {
-		var newstb transactions.SignedTxnInBlock
-		newstb.SignedTxn = stb.SignedTxn
-		newstb.Digest = crypto.Hash(protocol.Encode(&stb.SignedTxn))
-		newstb.HasGenesisID = stb.HasGenesisID
-		newstb.HasGenesisHash = stb.HasGenesisHash
-		c.Payset = append(c.Payset, newstb)
+	var c Block
+	c.BlockHeader = block.BlockHeader
+	c.Payset = make(transactions.Payset, len(block.Payset), len(block.Payset))
+	for i, stb := range block.Payset {
+		c.Payset[i] = transactions.SignedTxnInBlock{}
+		c.Payset[i].HasGenesisHash = stb.HasGenesisHash
+		c.Payset[i].HasGenesisID = stb.HasGenesisID
+		c.Payset[i].Digest = stb.Digest
 	}
 	return c
 }
@@ -742,5 +741,6 @@ func (bh BlockHeader) EncodeSignedTxn(st transactions.SignedTxn, ad transactions
 
 	stb.SignedTxn = st
 	stb.ApplyData = ad
+	stb.Digest = crypto.Hash(protocol.Encode(&st))
 	return stb, nil
 }
