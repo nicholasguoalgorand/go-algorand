@@ -553,7 +553,7 @@ func initConsensusProtocols() {
 		MinTxnFee:           1000,
 		MaxTxnLife:          1000,
 		MaxTxnNoteBytes:     1024,
-		MaxTxnBytesPerBlock: 10000000,
+		MaxTxnBytesPerBlock: 5000000,
 		DefaultKeyDilution:  10000,
 
 		MaxTimestampIncrement: 25,
@@ -856,7 +856,7 @@ func initConsensusProtocols() {
 	vFuture.ApprovedUpgrades = map[protocol.ConsensusVersion]uint64{}
 
 	// FilterTimeout for period 0 should take a new optimized, configured value, need to revisit this later
-	vFuture.AgreementFilterTimeoutPeriod0 = 4 * time.Second
+	vFuture.AgreementFilterTimeoutPeriod0 = 2 * time.Second
 
 	// Enable compact certificates.
 	vFuture.CompactCertRounds = 128

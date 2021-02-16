@@ -46,7 +46,7 @@ var ErrNoSpace = errors.New("block does not have space for transaction")
 // maxPaysetHint makes sure that we don't allocate too much memory up front
 // in the block evaluator, since there cannot reasonably be more than this
 // many transactions in a block.
-const maxPaysetHint = 10000
+const maxPaysetHint = 20000
 
 type roundCowBase struct {
 	l ledgerForCowBase
