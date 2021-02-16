@@ -250,6 +250,7 @@ func (store *proposalStore) handle(r routerHandle, p player, e event) event {
 				Err: makeSerErrStr("proposalStore: no accepting blockAssembler found on payloadVerified"),
 			}
 		}
+		logging.Base().Infof("len asm %v", len(store.Assemblers))
 
 		var err error
 		store.Assemblers[pv], err = ea.bind(pp)
