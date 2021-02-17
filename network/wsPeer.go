@@ -17,7 +17,6 @@
 package network
 
 import (
-	"container/list"
 	"context"
 	"encoding/binary"
 	"fmt"
@@ -97,6 +96,8 @@ type sendMessage struct {
 	enqueued     time.Time             // the time at which the message was first generated
 	peerEnqueued time.Time             // the time at which the peer was attempting to enqueue the message
 	msgTags      map[protocol.Tag]bool // when msgTags is speficied ( i.e. non-nil ), the send goroutine is to replace the message tag filter with this one. No data would be accompanied to this message.
+	hash crypto.Digest
+	ctx context.Context
 }
 
 // wsPeerCore also works for non-connected peers we want to do HTTP GET from
@@ -210,13 +211,8 @@ type wsPeer struct {
 	// performance or not. Throttled connections are more likely to be short-lived connections.
 	throttledOutgoingConnection bool
 
-	kvStore      map[crypto.Digest][]byte
-	keysList     *list.List
-	kvStoreMutex deadlock.RWMutex
-
-	kvStoreSender      map[crypto.Digest]bool
-	keysListSender     *list.List
-	kvStoreMutexSender deadlock.RWMutex
+	receiveMsgTracker *msgTracker
+	sendMsgTracker *msgTracker
 }
 
 // HTTPPeer is what the opaque Peer might be.
@@ -279,7 +275,7 @@ func (wp *wsPeer) Unicast(ctx context.Context, msg []byte, tag protocol.Tag) err
 		digest = crypto.Hash(mbytes)
 	}
 
-	ok := wp.writeNonBlock(mbytes, false, digest, time.Now())
+	ok := wp.writeNonBlock(mbytes, false, digest, time.Now(), ctx)
 	if !ok {
 		networkBroadcastsDropped.Inc(nil)
 		err = fmt.Errorf("wsPeer failed to unicast: %v", wp.GetAddress())
@@ -307,7 +303,9 @@ func (wp *wsPeer) Respond(ctx context.Context, reqMsg IncomingMessage, responseT
 	msg[0] = sendMessage{
 		data:         append([]byte(protocol.TopicMsgRespTag), serializedMsg...),
 		enqueued:     time.Now(),
-		peerEnqueued: time.Now()}
+		peerEnqueued: time.Now(),
+		ctx: context.Background(),
+	}
 	select {
 	case wp.sendBufferBulk <- msg:
 	case <-wp.closing:
@@ -328,11 +326,8 @@ func (wp *wsPeer) init(config config.Local, sendBufferLength int) {
 	atomic.StoreInt64(&wp.lastPacketTime, time.Now().UnixNano())
 	wp.responseChannels = make(map[uint64]chan *Response)
 	wp.sendMessageTag = defaultSendMessageTags
-	wp.kvStore = make(map[crypto.Digest][]byte)
-	wp.keysList = list.New()
-
-	wp.kvStoreSender = make(map[crypto.Digest]bool)
-	wp.keysListSender = list.New()
+	wp.sendMsgTracker = makeTracker(50000)
+	wp.receiveMsgTracker = makeTracker(100000)
 
 	// processed is a channel that messageHandlerThread writes to
 	// when it's done with one of our messages, so that we can queue
@@ -422,9 +417,10 @@ func (wp *wsPeer) readLoop() {
 		networkReceivedBytesTotal.AddUint64(uint64(len(msg.Data)+2), nil)
 		networkMessageReceivedTotal.AddUint64(1, nil)
 		msg.Sender = wp
-		//logging.Base().Infof("mayberead, %v %v", msg.Tag, crypto.Hash(msg.Data))
+
+		//TODO(yg) is ProposalTransactionTag useful?
 		if msg.Tag == protocol.TxnTag || msg.Tag == protocol.ProposalTransactionTag {
-			wp.StoreKV(crypto.Hash(msg.Data), msg.Data)
+			wp.receiveMsgTracker.storeMsg(msg.Data)
 		}
 
 		// for outgoing connections, we want to notify the connection monitor that we've received
@@ -513,6 +509,7 @@ func (wp *wsPeer) handleMessageOfInterest(msg IncomingMessage) (shutdown bool) {
 		enqueued:     time.Now(),
 		peerEnqueued: time.Now(),
 		msgTags:      msgTagsMap,
+		ctx: context.Background(),
 	}
 
 	// try to send the message to the send loop. The send loop will store the message locally and would use it.
@@ -556,18 +553,28 @@ func (wp *wsPeer) handleFilterMessage(msg IncomingMessage) {
 	wp.outgoingMsgFilter.CheckDigest(digest, true, true)
 }
 
+var emptyHash = crypto.Digest{}
 func (wp *wsPeer) writeLoopSend(msgs []sendMessage) disconnectReason {
 	for _, msg := range msgs {
-		hash := crypto.Hash(msg.data)
-		if wp.LoadKVSender(hash) {
+		if wp.sendMsgTracker.existsUnsafe(msg.hash) {
 			continue
 		}
+
 		if err := wp.writeLoopSendMsg(msg); err != disconnectReasonNone {
 			logging.Base().Infof("bad msg: %v", len(msg.data))
 			return err
 		}
-		if len(msg.data) > 2 && (protocol.Tag(msg.data[:2]) == protocol.ProposalTransactionTag || protocol.Tag(msg.data[:2]) == protocol.TxnTag) {
-			wp.StoreKVSender(hash, true)
+
+		if len(msg.data) >= 2 && protocol.Tag(msg.data[:2]) == protocol.TxnTag {
+			if msg.hash != emptyHash {
+				wp.sendMsgTracker.remember(msg.hash)
+			}
+		}
+
+		select {
+		case <-msg.ctx.Done():
+			return disconnectReasonNone
+		default:
 		}
 	}
 	return disconnectReasonNone
@@ -657,16 +664,16 @@ func (wp *wsPeer) writeLoopCleanup(reason disconnectReason) {
 	wp.wg.Done()
 }
 
-func (wp *wsPeer) writeNonBlock(data []byte, highPrio bool, digest crypto.Digest, msgEnqueueTime time.Time) bool {
+func (wp *wsPeer) writeNonBlock(data []byte, highPrio bool, digest crypto.Digest, msgEnqueueTime time.Time, ctx context.Context) bool {
 	msgs := make([][]byte, 1, 1)
 	digests := make([]crypto.Digest, 1, 1)
 	msgs[0] = data
 	digests[0] = digest
-	return wp.writeNonBlockMsgs(msgs, highPrio, digests, msgEnqueueTime)
+	return wp.writeNonBlockMsgs(msgs, highPrio, digests, msgEnqueueTime, ctx)
 }
 
 // return true if enqueued/sent
-func (wp *wsPeer) writeNonBlockMsgs(data [][]byte, highPrio bool, digest []crypto.Digest, msgEnqueueTime time.Time) bool {
+func (wp *wsPeer) writeNonBlockMsgs(data [][]byte, highPrio bool, digest []crypto.Digest, msgEnqueueTime time.Time, ctx context.Context) bool {
 	filteredCount := 0
 	filtered := make([]bool, len(data), len(data))
 	for i := range data {
@@ -692,7 +699,7 @@ func (wp *wsPeer) writeNonBlockMsgs(data [][]byte, highPrio bool, digest []crypt
 	index := 0
 	for i, d := range data {
 		if !filtered[i] {
-			msgs[index] = sendMessage{data: d, enqueued: msgEnqueueTime, peerEnqueued: enqueueTime}
+			msgs[index] = sendMessage{data: d, enqueued: msgEnqueueTime, peerEnqueued: enqueueTime, hash: digest[i], ctx: ctx}
 			index++
 		}
 	}
@@ -728,7 +735,7 @@ func (wp *wsPeer) sendPing() bool {
 	copy(mbytes, tagBytes)
 	crypto.RandBytes(mbytes[len(tagBytes):])
 	wp.pingData = mbytes[len(tagBytes):]
-	sent := wp.writeNonBlock(mbytes, false, crypto.Digest{}, time.Now())
+	sent := wp.writeNonBlock(mbytes, false, crypto.Digest{}, time.Now(), context.Background())
 
 	if sent {
 		wp.pingInFlight = true
@@ -819,7 +826,8 @@ func (wp *wsPeer) Request(ctx context.Context, tag Tag, topics Topics) (resp *Re
 	msg[0] = sendMessage{
 		data:         append([]byte(tag), serializedMsg...),
 		enqueued:     time.Now(),
-		peerEnqueued: time.Now()}
+		peerEnqueued: time.Now(),
+		ctx: context.Background()}
 	select {
 	case wp.sendBufferBulk <- msg:
 	case <-wp.closing:
@@ -857,48 +865,4 @@ func (wp *wsPeer) getAndRemoveResponseChannel(key uint64) (respChan chan *Respon
 	delete(wp.responseChannels, key)
 
 	return
-}
-
-// StoreKV stores an entry in the corresponding peer's key-value store
-func (wp *wsPeer) StoreKV(key crypto.Digest, value []byte) {
-	wp.kvStoreMutex.Lock()
-	defer wp.kvStoreMutex.Unlock()
-	wp.kvStore[key] = value
-	wp.keysList.PushBack(key)
-	//logging.Base().Infof("storekv, %v %v", key, wp.peerIndex)
-	for wp.keysList.Len() > 100000 {
-		key := wp.keysList.Front()
-		delete(wp.kvStore, key.Value.(crypto.Digest))
-		wp.keysList.Remove(key)
-		//logging.Base().Infof("deletekv, %v %v", key, wp.peerIndex)
-	}
-}
-
-// LoadKV retrieves an entry from the corresponding peer's key-value store
-func (wp *wsPeer) LoadKV(keys []crypto.Digest) [][]byte {
-	wp.kvStoreMutex.RLock()
-	defer wp.kvStoreMutex.RUnlock()
-	//logging.Base().Infof("loadkv, %v %v", key, wp.peerIndex)
-	values := make([][]byte, len(keys), len(keys))
-	for i, k := range keys {
-		values[i] = wp.kvStore[k]
-	}
-	return values
-}
-
-// StoreKVSender stores an entry in the corresponding peer's key-value store
-func (wp *wsPeer) StoreKVSender(key crypto.Digest, value bool) {
-	wp.kvStoreSender[key] = value
-	wp.keysListSender.PushBack(key)
-	for wp.keysListSender.Len() > 50000 {
-		key := wp.keysListSender.Front()
-		wp.keysListSender.Remove(key)
-		delete(wp.kvStoreSender, key.Value.(crypto.Digest))
-	}
-}
-
-// LoadKVSender retrieves an entry from the corresponding peer's key-value store
-func (wp *wsPeer) LoadKVSender(key crypto.Digest) bool {
-	value, _ := wp.kvStoreSender[key]
-	return value
 }

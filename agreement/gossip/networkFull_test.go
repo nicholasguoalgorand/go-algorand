@@ -360,6 +360,7 @@ func testNetworkImplFull(t *testing.T, nodesCount int) {
 	voteBufferSize = 100
 	proposalBufferSize = 100
 	bundleBufferSize = 100
+
 	t.Run("AgreementVoteTag", func(t *testing.T) {
 		testNetworkImplAgreementVote(t, nodesCount)
 	})

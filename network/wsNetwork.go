@@ -18,7 +18,6 @@ package network
 
 import (
 	"container/heap"
-	"container/list"
 	"context"
 	"encoding/base64"
 	"errors"
@@ -205,8 +204,8 @@ type GossipNode interface {
 	// SubstituteGenesisID substitutes the "{genesisID}" with their network-specific genesisID.
 	SubstituteGenesisID(rawURL string) string
 
-	// LoadKV retrieves an entry from the corresponding peer's key-value store
-	LoadKV(node Peer, key []crypto.Digest) [][]byte
+	// LoadMessage retrieves an entry from the corresponding peer's key-value store
+	LoadMessage(node Peer, key []crypto.Digest) ([][]byte,bool)
 }
 
 // IncomingMessage represents a message arriving from some peer in our p2p network
@@ -407,6 +406,7 @@ type broadcastRequest struct {
 	except      *wsPeer
 	done        chan struct{}
 	enqueueTime time.Time
+	ctx context.Context
 }
 
 func (r broadcastRequest) ToBeHashed() (protocol.HashID, []byte) {
@@ -459,7 +459,7 @@ func (wn *WebsocketNetwork) Broadcast(ctx context.Context, tag protocol.Tag, dat
 // if wait is true then the call blocks until the packet has actually been sent to all neighbors.
 // TODO: add `priority` argument so that we don't have to guess it based on tag
 func (wn *WebsocketNetwork) BroadcastArray(ctx context.Context, tags []protocol.Tag, data [][]byte, wait bool, except Peer) error {
-	request := broadcastRequest{tags: tags, data: data, enqueueTime: time.Now()}
+	request := broadcastRequest{tags: tags, data: data, enqueueTime: time.Now(), ctx: ctx}
 	if except != nil {
 		request.except = except.(*wsPeer)
 	}
@@ -1377,7 +1377,7 @@ func (wn *WebsocketNetwork) innerBroadcast(request broadcastRequest, prio bool, 
 		if peer == request.except {
 			continue
 		}
-		ok := peer.writeNonBlockMsgs(data, prio, digests, request.enqueueTime)
+		ok := peer.writeNonBlockMsgs(data, prio, digests, request.enqueueTime, request.ctx)
 		if ok {
 			sentMessageCount++
 			continue
@@ -2070,7 +2070,7 @@ func (wn *WebsocketNetwork) tryConnect(addr, gossipAddr string) {
 			resp := wn.prioScheme.MakePrioResponse(challenge)
 			if resp != nil {
 				mbytes := append([]byte(protocol.NetPrioResponseTag), resp...)
-				sent := peer.writeNonBlock(mbytes, true, crypto.Digest{}, time.Now())
+				sent := peer.writeNonBlock(mbytes, true, crypto.Digest{}, time.Now(), context.Background())
 				if !sent {
 					wn.log.With("remote", addr).With("local", localAddr).Warnf("could not send priority response to %v", addr)
 				}
@@ -2269,21 +2269,17 @@ func (wn *WebsocketNetwork) SubstituteGenesisID(rawURL string) string {
 	return strings.Replace(rawURL, "{genesisID}", wn.GenesisID, -1)
 }
 
-// StoreKV stores an entry in the corresponding peer's key-value store
-func (wn *WebsocketNetwork) StoreKV(node Peer, key crypto.Digest, value []byte) {
+// LoadMessage retrieves an entry from the corresponding peer's key-value store
+func (wn *WebsocketNetwork) LoadMessage(node Peer, keys []crypto.Digest) ([][]byte, bool) {
 	peer := node.(*wsPeer)
-	peer.StoreKV(key, value)
+	return peer.receiveMsgTracker.LoadMessage(keys)
 }
 
-// LoadKV retrieves an entry from the corresponding peer's key-value store
-func (wn *WebsocketNetwork) LoadKV(node Peer, keys []crypto.Digest) [][]byte {
-	peer := node.(*wsPeer)
-	return peer.LoadKV(keys)
-}
-
-func (wn *WebsocketNetwork) TestPeer() *wsPeer {
+func (wn *WebsocketNetwork) TestPeer(hashes []crypto.Digest, msgs [][]byte) *wsPeer {
 	var wp wsPeer
-	wp.kvStore = make(map[crypto.Digest][]byte)
-	wp.keysList = list.New()
+	wp.receiveMsgTracker = makeTracker(100000)
+	for i, msg := range msgs {
+		wp.receiveMsgTracker.insert(hashes[i], msg)
+	}
 	return &wp
 }

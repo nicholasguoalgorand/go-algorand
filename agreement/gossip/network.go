@@ -157,8 +157,8 @@ func (i *networkImpl) Broadcast(t protocol.Tag, data []byte) (err error) {
 	return
 }
 
-func (i *networkImpl) BroadcastArray(t []protocol.Tag, data [][]byte) (err error) {
-	err = i.net.BroadcastArray(context.Background(), t, data, false, nil)
+func (i *networkImpl) BroadcastArray(ctx context.Context, t []protocol.Tag, data [][]byte) (err error) {
+	err = i.net.BroadcastArray(ctx, t, data, false, nil)
 	if err != nil {
 		i.log.Infof("agreement: could not broadcast message with tag %v: %v", t, err)
 	}
@@ -208,15 +208,15 @@ func (i *networkImpl) Disconnect(h agreement.MessageHandle) {
 	i.net.Disconnect(metadata.raw.Sender)
 }
 
-func (i *networkImpl) LoadKV(h agreement.MessageHandle, keys []crypto.Digest) [][]byte {
+func (i *networkImpl) LoadMessage(h agreement.MessageHandle, keys []crypto.Digest) ([][]byte, bool) {
 	metadata := messageMetadataFromHandle(h)
 
 	if metadata == nil { // synthentic loopback
 		// TODO warn
-		return nil
+		return nil, true
 	}
 
-	return i.net.LoadKV(metadata.raw.Sender, keys)
+	return i.net.LoadMessage(metadata.raw.Sender, keys)
 }
 
 func Metadata(raw network.IncomingMessage) *messageMetadata {

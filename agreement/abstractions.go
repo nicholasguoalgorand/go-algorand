@@ -262,7 +262,7 @@ type Network interface {
 	// otherwise, a nil is returned.
 	Broadcast(protocol.Tag, []byte) error
 
-	BroadcastArray([]protocol.Tag, [][]byte) error
+	BroadcastArray(context.Context, []protocol.Tag, [][]byte) error
 
 	// Relay attempts to send a slice of bytes under some protocol.Tag to
 	// all neighbors, except for the neighbor associated with the given
@@ -290,8 +290,8 @@ type Network interface {
 	// to start receiving messages.
 	Start()
 
-	// LoadKV retrieves an entry from the corresponding peer's key-value store
-	LoadKV(MessageHandle, []crypto.Digest) [][]byte
+	// LoadMessage retrieves an entry from the corresponding peer's key-value store
+	LoadMessage(MessageHandle, []crypto.Digest) ([][]byte, bool)
 }
 
 // RandomSource is an abstraction over the random number generator.
