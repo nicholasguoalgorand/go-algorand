@@ -19,7 +19,6 @@ package agreement
 import (
 	"context"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
-	"math/rand"
 	"sync"
 	"time"
 
@@ -385,10 +384,7 @@ func (c *poolCryptoVerifier) verifyProposalPayload(request cryptoProposalRequest
 		Txns: len(p.Block.Payset),
 		Round: int(p.Block.Round()),
 	}
-	logging.Base().Infof("payloadverify")
-	if rand.Float32() < 0.1 {
-		c.log.Metrics(telemetryspec.Agreement, metric, nil)
-	}
+	c.log.Metrics(telemetryspec.Agreement, metric, nil)
 
 	return cryptoResult{message: m, TaskIndex: request.TaskIndex}
 }
