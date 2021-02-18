@@ -99,6 +99,12 @@
       "BaseConfiguration": "c5.2xlarge"
     },
     {
+      "Name": "AWS-US-WEST-1-c5.4xlarge",
+      "Provider": "AWS",
+      "Region": "us-west-1",
+      "BaseConfiguration": "c5.4xlarge"
+    },
+    {
       "Name": "AWS-US-WEST-1-Small",
       "Provider": "AWS",
       "Region": "us-west-1",
