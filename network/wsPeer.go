@@ -683,6 +683,11 @@ func (wp *wsPeer) writeNonBlock(data []byte, highPrio bool, digest crypto.Digest
 
 // return true if enqueued/sent
 func (wp *wsPeer) writeNonBlockMsgs(data [][]byte, highPrio bool, digest []crypto.Digest, msgEnqueueTime time.Time, ctx context.Context) bool {
+	defer func() {
+		if len(data) > 1 {
+			logging.Base().Infof("enqueued")
+		}
+	}()
 	filteredCount := 0
 	filtered := make([]bool, len(data), len(data))
 	for i := range data {
