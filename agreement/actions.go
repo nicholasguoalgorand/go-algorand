@@ -19,6 +19,7 @@ package agreement
 import (
 	"context"
 	"fmt"
+	"github.com/algorand/go-algorand/logging"
 
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
@@ -155,6 +156,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 			PriorVote:               msg.Vote,
 		}
 		data = protocol.Encode(&payload)
+		logging.Base().Infof("send start")
 	}
 
 	switch a.T {
