@@ -1425,7 +1425,7 @@ func handleTopicRequest(msg IncomingMessage) (out OutgoingMessage) {
 
 // Set up two nodes, test topics send/recieve is working
 func TestWebsocketNetworkTopicRoundtrip(t *testing.T) {
-	var topicMsgReqTag Tag = protocol.UniCatchupReqTag
+	var topicMsgReqTag Tag = protocol.UniEnsBlockReqTag
 	netA := makeTestWebsocketNode(t)
 	netA.config.GossipFanout = 1
 	netA.Start()
@@ -1542,7 +1542,6 @@ func TestWebsocketNetworkMessageOfInterest(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		netA.Broadcast(context.Background(), protocol.AgreementVoteTag, []byte{0, 1, 2, 3, 4}, true, nil)
 		netA.Broadcast(context.Background(), protocol.TxnTag, []byte{0, 1, 2, 3, 4}, true, nil)
-		netA.Broadcast(context.Background(), protocol.UniEnsBlockResTag, []byte{0, 1, 2, 3, 4}, true, nil)
 		netA.Broadcast(context.Background(), protocol.ProposalPayloadTag, []byte{0, 1, 2, 3, 4}, true, nil)
 		netA.Broadcast(context.Background(), protocol.VoteBundleTag, []byte{0, 1, 2, 3, 4}, true, nil)
 	}
