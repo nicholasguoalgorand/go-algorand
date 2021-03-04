@@ -20,7 +20,6 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
-	"github.com/algorand/go-algorand/logging"
 	"io"
 	"net"
 	"net/http"
@@ -572,9 +571,6 @@ func (wp *wsPeer) writeLoopSend(msg sendMessage) disconnectReason {
 	networkSentBytesTotal.AddUint64(uint64(len(msg.data)), nil)
 	networkMessageSentTotal.AddUint64(1, nil)
 	networkMessageQueueMicrosTotal.AddUint64(uint64(time.Now().Sub(msg.peerEnqueued).Nanoseconds()/1000), nil)
-	if len(msg.data) >= 2 && protocol.Tag(msg.data[:2]) == "PP" {
-		logging.Base().Infof("send done")
-	}
 	return disconnectReasonNone
 }
 

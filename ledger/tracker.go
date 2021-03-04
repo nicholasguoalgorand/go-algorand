@@ -126,7 +126,6 @@ func (tr *trackerRegistry) newBlock(blk bookkeeping.Block, delta ledgercore.Stat
 	if len(tr.trackers) == 0 {
 		fmt.Printf("trackerRegistry::newBlock - no trackers (%d)\n", blk.Round())
 	}
-	logging.Base().Infof("len delta %v %v %v %v", delta.Accts.Len(), len(delta.Txids), len(delta.Txleases), len(delta.Creatables))
 }
 
 func (tr *trackerRegistry) committedUpTo(rnd basics.Round) basics.Round {
