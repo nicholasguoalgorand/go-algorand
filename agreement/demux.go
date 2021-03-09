@@ -388,6 +388,8 @@ func (d *demux) next(s *Service, deadline time.Duration, fastDeadline time.Durat
 
 // setupCompoundMessage processes compound messages: distinct messages which are delivered together
 func setupCompoundMessage(l LedgerReader, m message, s *Service) (res externalEvent) {
+	logging.Base().Infof("start setupcompound")
+	defer logging.Base().Infof("done setupcompound")
 	compound := m.CompoundMessage
 	if s.BlockFactory != nil {
 		s.BlockFactory.ReconstructBlock(compound.Proposal.Block)

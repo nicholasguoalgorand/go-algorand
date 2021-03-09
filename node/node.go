@@ -1052,6 +1052,8 @@ func (node *AlgorandFullNode) AssembleBlock(round basics.Round, deadline time.Ti
 }
 
 func (node *AlgorandFullNode) ReconstructBlock(block bookkeeping.Block) {
+	logging.Base().Infof("start ReconstructBlock")
+	defer logging.Base().Infof("done ReconstructBlock")
 	digests := make([]crypto.Digest, len(block.Payset))
 	for i, stib := range block.Payset {
 		digests[i] = stib.Digest
