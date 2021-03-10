@@ -1059,6 +1059,7 @@ func (node *AlgorandFullNode) ReconstructBlock(block bookkeeping.Block) {
 		digests[i] = stib.Digest
 	}
 	txns, found := node.transactionPool.FindTxns(digests)
+	logging.Base().Infof("found txns")
 	for i := range block.Payset {
 		if found[i] {
 			block.Payset[i].SignedTxn = txns[i]
