@@ -1054,17 +1054,12 @@ func (node *AlgorandFullNode) AssembleBlock(round basics.Round, deadline time.Ti
 func (node *AlgorandFullNode) ReconstructBlock(block bookkeeping.Block) {
 	logging.Base().Infof("start ReconstructBlock")
 	defer logging.Base().Infof("done ReconstructBlock")
-	digests := make([]crypto.Digest, len(block.Payset))
-	for i, stib := range block.Payset {
-		digests[i] = stib.Digest
-	}
-	txns, found := node.transactionPool.FindTxns(digests)
+	txns, found := node.transactionPool.FindTxns(block.PaysetDigest)
 	logging.Base().Infof("found txns")
 	for i := range block.Payset {
 		if found[i] {
 			block.Payset[i].SignedTxn = txns[i]
 		}
-		block.Payset[i].Digest = crypto.Digest{}
 		var err error
 		block.Payset[i], err = block.EncodeSignedTxn(block.Payset[i].SignedTxn, transactions.ApplyData{})
 		if err != nil {
