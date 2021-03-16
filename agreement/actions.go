@@ -161,7 +161,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 		if err != nil {
 			logging.Base().Warnf("failed to decode payset: %v", err)
 		}
-		for i := range payset {
+		for i := range msg.Proposal.Payset {
 			stxn := payset[i].SignedTxn
 			txnData[i] = protocol.Encode(&stxn)
 			tags[i] = protocol.TxnTag
