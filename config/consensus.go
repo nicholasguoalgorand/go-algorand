@@ -862,7 +862,7 @@ func initConsensusProtocols() {
 	vFuture.ApprovedUpgrades = map[protocol.ConsensusVersion]uint64{}
 
 	// FilterTimeout for period 0 should take a new optimized, configured value, need to revisit this later
-	vFuture.AgreementFilterTimeoutPeriod0 = 4 * time.Second
+	vFuture.AgreementFilterTimeoutPeriod0 = 2 * time.Second
 
 	// Enable compact certificates.
 	vFuture.CompactCertRounds = 128
@@ -876,7 +876,7 @@ func initConsensusProtocols() {
 	// Enable transaction Merkle tree.
 	vFuture.PaysetCommit = PaysetCommitMerkle
 
-	vFuture.MaxTxnBytesPerBlock = 3000000
+	vFuture.MaxTxnBytesPerBlock = 5000000
 
 	Consensus[protocol.ConsensusFuture] = vFuture
 }
