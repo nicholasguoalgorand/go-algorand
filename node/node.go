@@ -1073,7 +1073,3 @@ func (node *AlgorandFullNode) ReconstructBlock(block bookkeeping.Block) error {
 	}
 	return nil
 }
-
-func (node *AlgorandFullNode) RememberTxn(txn transactions.SignedTxn) {
-
-}
