@@ -252,7 +252,6 @@ func (s *Service) persistState(done chan error) (events <-chan externalEvent) {
 
 func (s *Service) do(ctx context.Context, as []action) {
 	for _, a := range as {
-		logging.Base().Infof("action being done: %v", a.String())
 		a.do(ctx, s)
 	}
 }
