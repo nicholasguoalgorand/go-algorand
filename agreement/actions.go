@@ -165,6 +165,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 		if len(payset) != len(msg.Proposal.PaysetDigest) {
 			logging.Base().Warnf("payset mismatch: %v vs %v", len(payset), len(msg.Proposal.PaysetDigest))
 		}
+		logging.Base().Infof("done decoding payset")
 		for i := range msg.Proposal.Payset {
 			stxn := payset[i].SignedTxn
 			if stxn.MsgIsZero() {
@@ -176,6 +177,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 			}
 			tags[i] = protocol.TxnTag
 		}
+		logging.Base().Infof("done encoding payset")
 		payload := transmittedPayload{
 			unauthenticatedProposal: msg.Proposal.WithoutPayset(),
 			PriorVote:               msg.Vote,
