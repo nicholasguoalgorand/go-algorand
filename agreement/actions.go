@@ -163,6 +163,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 		}
 		logging.Base().Infof("done decoding payset")
 		millisecond := 0
+		millisecond10 := 0
 		microsecond100 := 0
 		microsecond10 := 0
 		microsecond := 0
@@ -183,9 +184,12 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 			if duration > time.Millisecond {
 				millisecond ++
 			}
+			if duration > time.Millisecond * 10 {
+				millisecond10 ++
+			}
 		}
 		logging.Base().Infof("done encoding payset")
-		logging.Base().Infof("buckets: %v %v %v %v", microsecond, microsecond10, microsecond100, millisecond)
+		logging.Base().Infof("buckets: %v %v %v %v %v", microsecond, microsecond10, microsecond100, millisecond, millisecond10)
 
 		payload := transmittedPayload{
 			unauthenticatedProposal: msg.Proposal.WithoutPayset(),
