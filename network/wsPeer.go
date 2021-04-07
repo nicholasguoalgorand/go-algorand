@@ -735,34 +735,23 @@ func (wp *wsPeer) writeNonBlock(ctx context.Context, data []byte, highPrio bool,
 
 // return true if enqueued/sent
 func (wp *wsPeer) writeNonBlockMsgs(ctx context.Context, data [][]byte, highPrio bool, digest []crypto.Digest, pacer chan int, msgEnqueueTime time.Time) bool {
-	filteredCount := 0
-	filtered := make([]bool, len(data), len(data))
-	for i := range data {
-		if wp.outgoingMsgFilter != nil && len(data[i]) > messageFilterSize && wp.outgoingMsgFilter.CheckDigest(digest[i], false, false) {
-			//wp.net.log.Debugf("msg drop as outbound dup %s(%d) %v", string(data[:2]), len(data)-2, digest)
-			// peer has notified us it doesn't need this message
-			outgoingNetworkMessageFilteredOutTotal.Inc(nil)
-			outgoingNetworkMessageFilteredOutBytesTotal.AddUint64(uint64(len(data)), nil)
+	// check if last message is filtered
+	if wp.outgoingMsgFilter != nil && len(data[len(data)-1]) > messageFilterSize && wp.outgoingMsgFilter.CheckDigest(digest[len(data)-1], false, false) {
+		//wp.net.log.Debugf("msg drop as outbound dup %s(%d) %v", string(data[:2]), len(data)-2, digest)
+		// peer has notified us it doesn't need this message
+		outgoingNetworkMessageFilteredOutTotal.Inc(nil)
+		outgoingNetworkMessageFilteredOutBytesTotal.AddUint64(uint64(len(data)), nil)
 
-			filtered[i] = true
-			filteredCount++
-		}
-	}
-	if filteredCount == len(data) {
 		// returning true because it is as good as sent, the peer already has it.
 		return true
 	}
 
 	var outchan chan sendMessages
 
-	msgs := make([]sendMessage, len(data)-filteredCount, len(data)-filteredCount)
+	msgs := make([]sendMessage, len(data), len(data))
 	enqueueTime := time.Now()
-	index := 0
 	for i, d := range data {
-		if !filtered[i] {
-			msgs[index] = sendMessage{data: d, enqueued: msgEnqueueTime, peerEnqueued: enqueueTime, hash: digest[i], ctx: ctx}
-			index++
-		}
+		msgs[i] = sendMessage{data: d, enqueued: msgEnqueueTime, peerEnqueued: enqueueTime, hash: digest[i], ctx: ctx}
 	}
 
 	if highPrio {
