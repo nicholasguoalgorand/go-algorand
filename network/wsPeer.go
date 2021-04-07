@@ -738,7 +738,7 @@ func (wp *wsPeer) writeNonBlockMsgs(ctx context.Context, data [][]byte, highPrio
 	filteredCount := 0
 	filtered := make([]bool, len(data), len(data))
 	for i := range data {
-		if wp.outgoingMsgFilter != nil && len(data[i]) > messageFilterSize && !msgToTrack(protocol.Tag(data[i][:2])) && wp.outgoingMsgFilter.CheckDigest(digest[i], false, false) {
+		if wp.outgoingMsgFilter != nil && len(data[i]) > messageFilterSize && wp.outgoingMsgFilter.CheckDigest(digest[i], false, false) {
 			//wp.net.log.Debugf("msg drop as outbound dup %s(%d) %v", string(data[:2]), len(data)-2, digest)
 			// peer has notified us it doesn't need this message
 			outgoingNetworkMessageFilteredOutTotal.Inc(nil)
