@@ -23,7 +23,6 @@ import (
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/protocol"
-	"time"
 )
 
 //go:generate stringer -type=actionType
