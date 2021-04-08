@@ -23,7 +23,6 @@ import (
 	"github.com/algorand/go-algorand/logging/logspec"
 	"github.com/algorand/go-algorand/logging/telemetryspec"
 	"github.com/algorand/go-algorand/protocol"
-	"time"
 )
 
 //go:generate stringer -type=actionType
@@ -162,35 +161,11 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 			logging.Base().Warnf("failed to decode payset: %v", err)
 		}
 		logging.Base().Infof("done decoding payset")
-		millisecond := 0
-		millisecond10 := 0
-		microsecond100 := 0
-		microsecond10 := 0
-		microsecond := 0
 		for i := range msg.Proposal.Payset {
-			encodeStartTime := time.Now()
 			txnData[i] = protocol.Encode(&payset[i].SignedTxn)
 			tags[i] = protocol.TxnTag
-			duration := time.Now().Sub(encodeStartTime)
-			if duration > time.Microsecond {
-				microsecond ++
-			}
-			if duration > time.Microsecond * 10 {
-				microsecond10 ++
-			}
-			if duration > time.Microsecond * 100 {
-				microsecond100 ++
-			}
-			if duration > time.Millisecond {
-				millisecond ++
-				logging.Base().Infof("txtype: %v, size: %v, len: %v", payset[i].SignedTxn.Txn.Type, payset[i].SignedTxn.Msgsize(), len(txnData[i]))
-			}
-			if duration > time.Millisecond * 10 {
-				millisecond10 ++
-			}
 		}
 		logging.Base().Infof("done encoding payset")
-		logging.Base().Infof("buckets: %v %v %v %v %v", microsecond, microsecond10, microsecond100, millisecond, millisecond10)
 
 		payload := transmittedPayload{
 			unauthenticatedProposal: msg.Proposal.WithoutPayset(),
