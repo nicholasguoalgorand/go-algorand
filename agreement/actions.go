@@ -183,7 +183,7 @@ func (a networkAction) do(ctx context.Context, s *Service) {
 			}
 			if duration > time.Millisecond {
 				millisecond ++
-				logging.Base().Infof("txtype: %v, len: %v", payset[i].SignedTxn.Txn.Type, payset[i].SignedTxn.Msgsize())
+				logging.Base().Infof("txtype: %v, size: %v, len: %v", payset[i].SignedTxn.Txn.Type, payset[i].SignedTxn.Msgsize(), len(txnData[i]))
 			}
 			if duration > time.Millisecond * 10 {
 				millisecond10 ++
