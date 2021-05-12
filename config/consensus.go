@@ -898,6 +898,8 @@ func initConsensusProtocols() {
 	// FilterTimeout for period 0 should take a new optimized, configured value, need to revisit this later
 	vFuture.AgreementFilterTimeoutPeriod0 = 4 * time.Second
 
+	vFuture.MaxTxnBytesPerBlock = 2000000
+
 	// Enable compact certificates.
 	vFuture.CompactCertRounds = 128
 	vFuture.CompactCertTopVoters = 1024 * 1024
