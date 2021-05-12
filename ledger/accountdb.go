@@ -114,7 +114,7 @@ var accountsResetExprs = []string{
 // accountDBVersion is the database version that this binary would know how to support and how to upgrade to.
 // details about the content of each of the versions can be found in the upgrade functions upgradeDatabaseSchemaXXXX
 // and their descriptions.
-var accountDBVersion = int32(4)
+var accountDBVersion = int32(5)
 
 // persistedAccountData is used for representing a single account stored on the disk. In addition to the
 // basics.AccountData, it also stores complete referencing information used to maintain the base accounts
@@ -631,6 +631,50 @@ func accountsAddNormalizedBalance(tx *sql.Tx, proto config.ConsensusParams) erro
 	return rows.Err()
 }
 
+// removeEmptyAccountData removes empty AccountData msgp-encoded entries from accountbase table
+// and optionally returns list of addresses that were eliminated
+func removeEmptyAccountData(tx *sql.Tx, queryAddresses bool) (num int64, addresses []basics.Address, err error) {
+	if queryAddresses {
+		rows, err := tx.Query("SELECT address FROM accountbase where length(data) = 1 and data = x'80'") // empty AccountData is 0x80
+		if err != nil {
+			return 0, nil, err
+		}
+		defer rows.Close()
+
+		for rows.Next() {
+			var addrbuf []byte
+			err = rows.Scan(&addrbuf)
+			if err != nil {
+				return 0, nil, err
+			}
+			var addr basics.Address
+			if len(addrbuf) != len(addr) {
+				err = fmt.Errorf("Account DB address length mismatch: %d != %d", len(addrbuf), len(addr))
+				return 0, nil, err
+			}
+			copy(addr[:], addrbuf)
+			addresses = append(addresses, addr)
+		}
+
+		// if the above loop was abrupted by an error, test it now.
+		if err = rows.Err(); err != nil {
+			return 0, nil, err
+		}
+	}
+
+	result, err := tx.Exec("DELETE from accountbase where length(data) = 1 and data = x'80'")
+	if err != nil {
+		return 0, nil, err
+	}
+	num, err = result.RowsAffected()
+	if err != nil {
+		// something wrong on getting rows count but data deleted, ignore the error
+		num = int64(len(addresses))
+		err = nil
+	}
+	return num, addresses, err
+}
+
 // accountDataToOnline returns the part of the AccountData that matters
 // for online accounts (to answer top-N queries).  We store a subset of
 // the full AccountData because we need to store a large number of these
@@ -1136,7 +1180,7 @@ func accountsNewRound(tx *sql.Tx, updates compactAccountDeltas, creatables map[b
 }
 
 // totalsNewRounds updates the accountsTotals by applying series of round changes
-func totalsNewRounds(tx *sql.Tx, updates []ledgercore.AccountDeltas, compactUpdates compactAccountDeltas, accountTotals []ledgercore.AccountTotals, protos []config.ConsensusParams) (err error) {
+func totalsNewRounds(tx *sql.Tx, updates []ledgercore.AccountDeltas, compactUpdates compactAccountDeltas, accountTotals []ledgercore.AccountTotals, proto config.ConsensusParams) (err error) {
 	var ot basics.OverflowTracker
 	totals, err := accountsTotals(tx, false)
 	if err != nil {
@@ -1157,13 +1201,13 @@ func totalsNewRounds(tx *sql.Tx, updates []ledgercore.AccountDeltas, compactUpda
 			addr, data := updates[i].GetByIdx(j)
 
 			if oldAccountData, has := accounts[addr]; has {
-				totals.DelAccount(protos[i], oldAccountData, &ot)
+				totals.DelAccount(proto, oldAccountData, &ot)
 			} else {
 				err = fmt.Errorf("missing old account data")
 				return
 			}
 
-			totals.AddAccount(protos[i], data, &ot)
+			totals.AddAccount(proto, data, &ot)
 			accounts[addr] = data
 		}
 	}
@@ -1313,15 +1357,19 @@ func reencodeAccounts(ctx context.Context, tx *sql.Tx) (modifiedAccounts uint, e
 	return
 }
 
-type merkleCommitter struct {
+// MerkleCommitter todo
+//msgp:ignore MerkleCommitter
+type MerkleCommitter struct {
 	tx         *sql.Tx
 	deleteStmt *sql.Stmt
 	insertStmt *sql.Stmt
 	selectStmt *sql.Stmt
 }
 
-func makeMerkleCommitter(tx *sql.Tx, staging bool) (mc *merkleCommitter, err error) {
-	mc = &merkleCommitter{tx: tx}
+// MakeMerkleCommitter creates a MerkleCommitter object that implements the merkletrie.Committer interface allowing storing and loading
+// merkletrie pages from a sqlite database.
+func MakeMerkleCommitter(tx *sql.Tx, staging bool) (mc *MerkleCommitter, err error) {
+	mc = &MerkleCommitter{tx: tx}
 	accountHashesTable := "accounthashes"
 	if staging {
 		accountHashesTable = "catchpointaccounthashes"
@@ -1341,8 +1389,8 @@ func makeMerkleCommitter(tx *sql.Tx, staging bool) (mc *merkleCommitter, err err
 	return mc, nil
 }
 
-// StorePage stores a single page in an in-memory persistence.
-func (mc *merkleCommitter) StorePage(page uint64, content []byte) error {
+// StorePage is the merkletrie.Committer interface implementation, stores a single page in a sqlite database table.
+func (mc *MerkleCommitter) StorePage(page uint64, content []byte) error {
 	if len(content) == 0 {
 		_, err := mc.deleteStmt.Exec(page)
 		return err
@@ -1351,8 +1399,8 @@ func (mc *merkleCommitter) StorePage(page uint64, content []byte) error {
 	return err
 }
 
-// LoadPage load a single page from an in-memory persistence.
-func (mc *merkleCommitter) LoadPage(page uint64) (content []byte, err error) {
+// LoadPage is the merkletrie.Committer interface implementation, load a single page from a sqlite database table.
+func (mc *MerkleCommitter) LoadPage(page uint64) (content []byte, err error) {
 	err = mc.selectStmt.QueryRow(page).Scan(&content)
 	if err == sql.ErrNoRows {
 		content = nil

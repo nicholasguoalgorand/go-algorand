@@ -29,6 +29,8 @@ import (
 
 type mockLedger struct {
 	balanceMap map[basics.Address]basics.AccountData
+	blocks     map[basics.Round]bookkeeping.BlockHeader
+	blockErr   map[basics.Round]error
 }
 
 func (ml *mockLedger) lookup(addr basics.Address) (basics.AccountData, error) {
@@ -63,7 +65,7 @@ func (ml *mockLedger) allocated(addr basics.Address, aidx basics.AppIndex, globa
 	return true, nil
 }
 
-func (ml *mockLedger) getKey(addr basics.Address, aidx basics.AppIndex, global bool, key string) (basics.TealValue, bool, error) {
+func (ml *mockLedger) getKey(addr basics.Address, aidx basics.AppIndex, global bool, key string, accountIdx uint64) (basics.TealValue, bool, error) {
 	return basics.TealValue{}, false, nil
 }
 
@@ -75,8 +77,13 @@ func (ml *mockLedger) compactCertNext() basics.Round {
 	return 0
 }
 
-func (ml *mockLedger) blockHdr(_ basics.Round) (bookkeeping.BlockHeader, error) {
-	return bookkeeping.BlockHeader{}, nil
+func (ml *mockLedger) blockHdr(rnd basics.Round) (bookkeeping.BlockHeader, error) {
+	err, hit := ml.blockErr[rnd]
+	if hit {
+		return bookkeeping.BlockHeader{}, err
+	}
+	hdr := ml.blocks[rnd] // default struct is fine if nothing found
+	return hdr, nil
 }
 
 func checkCow(t *testing.T, cow *roundCowState, accts map[basics.Address]basics.AccountData) {
@@ -105,7 +112,7 @@ func TestCowBalance(t *testing.T) {
 	c0 := makeRoundCowState(&ml, bookkeeping.BlockHeader{}, 0, 0)
 	checkCow(t, c0, accts0)
 
-	c1 := c0.child()
+	c1 := c0.child(0)
 	checkCow(t, c0, accts0)
 	checkCow(t, c1, accts0)
 
@@ -114,7 +121,7 @@ func TestCowBalance(t *testing.T) {
 	checkCow(t, c0, accts0)
 	checkCow(t, c1, accts1)
 
-	c2 := c1.child()
+	c2 := c1.child(0)
 	checkCow(t, c0, accts0)
 	checkCow(t, c1, accts1)
 	checkCow(t, c2, accts1)

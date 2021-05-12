@@ -19,6 +19,7 @@ package ledger
 import (
 	"fmt"
 
+	"github.com/algorand/go-algorand/config"
 	"github.com/algorand/go-algorand/data/basics"
 	"github.com/algorand/go-algorand/data/transactions"
 )
@@ -32,11 +33,11 @@ type logicLedger struct {
 type cowForLogicLedger interface {
 	Get(addr basics.Address, withPendingRewards bool) (basics.AccountData, error)
 	GetCreator(cidx basics.CreatableIndex, ctype basics.CreatableType) (basics.Address, bool, error)
-	GetKey(addr basics.Address, aidx basics.AppIndex, global bool, key string) (basics.TealValue, bool, error)
+	GetKey(addr basics.Address, aidx basics.AppIndex, global bool, key string, accountIdx uint64) (basics.TealValue, bool, error)
 	BuildEvalDelta(aidx basics.AppIndex, txn *transactions.Transaction) (basics.EvalDelta, error)
 
-	SetKey(addr basics.Address, aidx basics.AppIndex, global bool, key string, value basics.TealValue) error
-	DelKey(addr basics.Address, aidx basics.AppIndex, global bool, key string) error
+	SetKey(addr basics.Address, aidx basics.AppIndex, global bool, key string, value basics.TealValue, accountIdx uint64) error
+	DelKey(addr basics.Address, aidx basics.AppIndex, global bool, key string, accountIdx uint64) error
 
 	round() basics.Round
 	prevTimestamp() int64
@@ -72,6 +73,15 @@ func (al *logicLedger) Balance(addr basics.Address) (res basics.MicroAlgos, err 
 	}
 
 	return record.MicroAlgos, nil
+}
+
+func (al *logicLedger) MinBalance(addr basics.Address, proto *config.ConsensusParams) (res basics.MicroAlgos, err error) {
+	record, err := al.cow.Get(addr, false) // pending rewards unneeded
+	if err != nil {
+		return
+	}
+
+	return record.MinBalance(proto), nil
 }
 
 func (al *logicLedger) AssetHolding(addr basics.Address, assetIdx basics.AssetIndex) (basics.AssetHolding, error) {
@@ -131,6 +141,10 @@ func (al *logicLedger) ApplicationID() basics.AppIndex {
 	return al.aidx
 }
 
+func (al *logicLedger) CreatorAddress() basics.Address {
+	return al.creator
+}
+
 func (al *logicLedger) OptedIn(addr basics.Address, appIdx basics.AppIndex) (bool, error) {
 	if appIdx == basics.AppIndex(0) {
 		appIdx = al.aidx
@@ -138,19 +152,19 @@ func (al *logicLedger) OptedIn(addr basics.Address, appIdx basics.AppIndex) (boo
 	return al.cow.allocated(addr, appIdx, false)
 }
 
-func (al *logicLedger) GetLocal(addr basics.Address, appIdx basics.AppIndex, key string) (basics.TealValue, bool, error) {
+func (al *logicLedger) GetLocal(addr basics.Address, appIdx basics.AppIndex, key string, accountIdx uint64) (basics.TealValue, bool, error) {
 	if appIdx == basics.AppIndex(0) {
 		appIdx = al.aidx
 	}
-	return al.cow.GetKey(addr, appIdx, false, key)
+	return al.cow.GetKey(addr, appIdx, false, key, accountIdx)
 }
 
-func (al *logicLedger) SetLocal(addr basics.Address, key string, value basics.TealValue) error {
-	return al.cow.SetKey(addr, al.aidx, false, key, value)
+func (al *logicLedger) SetLocal(addr basics.Address, key string, value basics.TealValue, accountIdx uint64) error {
+	return al.cow.SetKey(addr, al.aidx, false, key, value, accountIdx)
 }
 
-func (al *logicLedger) DelLocal(addr basics.Address, key string) error {
-	return al.cow.DelKey(addr, al.aidx, false, key)
+func (al *logicLedger) DelLocal(addr basics.Address, key string, accountIdx uint64) error {
+	return al.cow.DelKey(addr, al.aidx, false, key, accountIdx)
 }
 
 func (al *logicLedger) fetchAppCreator(appIdx basics.AppIndex) (basics.Address, error) {
@@ -174,15 +188,15 @@ func (al *logicLedger) GetGlobal(appIdx basics.AppIndex, key string) (basics.Tea
 	if err != nil {
 		return basics.TealValue{}, false, err
 	}
-	return al.cow.GetKey(addr, appIdx, true, key)
+	return al.cow.GetKey(addr, appIdx, true, key, 0)
 }
 
 func (al *logicLedger) SetGlobal(key string, value basics.TealValue) error {
-	return al.cow.SetKey(al.creator, al.aidx, true, key, value)
+	return al.cow.SetKey(al.creator, al.aidx, true, key, value, 0)
 }
 
 func (al *logicLedger) DelGlobal(key string) error {
-	return al.cow.DelKey(al.creator, al.aidx, true, key)
+	return al.cow.DelKey(al.creator, al.aidx, true, key, 0)
 }
 
 func (al *logicLedger) GetDelta(txn *transactions.Transaction) (evalDelta basics.EvalDelta, err error) {
