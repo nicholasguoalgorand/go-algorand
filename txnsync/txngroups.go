@@ -84,6 +84,7 @@ func (s *syncState) encodeTransactionGroups(inTxnGroups []transactions.SignedTxG
 	if len(encoded) > minEncodedTransactionGroupsCompressionThreshold && float32(dataExchangeRate) < (estimatedGzipCompressionGains*estimatedGzipCompressionSpeed) {
 		compressedBytes, err := compressTransactionGroupsBytes(encoded)
 		if err == nil {
+			s.log.Infof("txnsync compressed: %d, original %d", len(compressedBytes), len(encoded))
 			return packedTransactionGroups{
 				Bytes:                compressedBytes,
 				CompressionFormat:    compressionFormatGzip,
